@@ -1,0 +1,64 @@
+@font-face {
+        font-family: Gidole;
+        src: url("../fonts/gidole.ttf");
+    }
+    body {
+     font-family: Gidole;
+    }
+    
+.navbar:after {
+  background-color: transparent !important;
+}
+
+.center {
+	text-align: center;
+}
+
+.big-number {
+	font-size: 45px;
+}
+
+#cifrao {
+	font-size: 30px;
+}
+
+.portfolio-chart {
+	 margin-top: 10vh;
+}
+
+.news {
+	background: rgba(255, 255, 255, 0.9);
+	color: rgb(65, 117, 164);
+	z-index: 100;
+	position: fixed;
+	bottom: 0;
+	left:0;
+	right:0;
+	font-size: 15px;
+	line-height: 16px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.ativo-nome {
+	text-transform: capitalize;
+	opacity: 0.5;
+}
+
+.stock-box-red {
+	background: red; border: 1px solid #ff3b30; padding: 6px; border-radius: 10px; color: white; border-radius: 27px;
+}
+
+.stock-box-green {
+	background: #1BC191; border: 1px solid #1BC191; padding: 6px; border-radius: 10px; color: white; border-radius: 27px;
+}
+  
+.demo-card-header-pic .card-header {
+    height: 40vw;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .capitalize {
+  	text-transform: capitalize;
+  }

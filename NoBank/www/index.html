@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>NoBank</title>
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="css/framework7.ios.css">
+    <link rel="stylesheet" href="css/framework7.ios.colors.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="css/my-app.css">
+    <!-- Path to your icons-->
+    <link rel="stylesheet" href="css/framework7-icons.css">
+</head>
+
+<body class="theme-green layout-dark">
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar-overlay"></div>
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal">
+      <div class="content-block">
+        <p>Left panel content goes here</p>
+      </div>
+    </div>
+    <!-- Right panel with cover effect-->
+    <div class="panel panel-right panel-cover">
+      <div class="content-block">
+        <p>Right panel content goes here</p>
+      </div>
+    </div>
+    <!-- Views-->
+    <div class="views">
+      <!-- Your main view, should have "view-main" class-->
+      <div class="view view-main">
+        <!-- Top Navbar-->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <!-- We have home navbar without left link-->
+            <div class="left">
+             <a href="#" class="link icon-only open-panel"> <i class="f7-icons">bars</i></a>
+            </div>
+            <div class="center sliding navbar-titulo color-green"></div>
+            <div class="right">
+             <a href="#" class="link icon-only"> <i class="f7-icons" id="icon-right">search</i></a>
+            </div>
+          </div>
+        </div>
+        <!-- Pages, because we need fixed-through navbar and toolbar, it has additional appropriate classes-->
+        <div class="pages navbar-through">
+          <!-- Page, data-page contains page name-->
+          <div data-page="index" class="page">
+            <!-- Scrollable page content-->
+            <div class="page-content hide-bars-on-scroll">
+              
+                <div class="tabs">
+                  <div id="carteira" class="portfolio tab active">
+                    <br><br>
+                    <div class="center" style="line-height: 0px">
+                      <p class="big-number"><span id="cifrao">$</span>0</p>
+                      <p class="color-green" style="margin-top: -10px">+$84,60 (1,5%) <span style="opacity: 0.5">HOJE</span></p>
+                    </div>
+                    <div class="portfolio-chart">
+                      <canvas id="myChart"></canvas>
+                    </div>
+                    <br>
+                    <div class="data-table card" style="margin-bottom: 80px">
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Ativo</th>
+                            <th>Variação</th>
+                            <th class="numeric-cell">Valor</th>
+                          </tr>
+                        </thead>
+                          <tbody>
+                            <tr>
+                              <td>GOOG<br><span class="ativo-nome">Alphabet Inc.</span></td>
+                              <td><span class="color-red">+0.5%</span></td>
+                              <td class="numeric-cell"><span class="stock-box-red">1232.78</span></td>
+                            </tr>
+                            <tr>
+                              <td>GOOG<br><span class="ativo-nome">Alphabet Inc.</span></td>
+                              <td><span class="color-red">+0.5%</span></td>
+                              <td class="numeric-cell"><span class="stock-box-green">1232.78</span></td>
+                            </tr>
+                            <tr>
+                              <td>GOOG<br><span class="ativo-nome">Alphabet Inc.</span></td>
+                              <td><span class="color-red">+0.5%</span></td>
+                              <td class="numeric-cell"><span class="stock-box-red">1232.78</span></td>
+                            </tr>
+                            <tr>
+                              <td>GOOG<br><span class="ativo-nome">Alphabet Inc.</span></td>
+                              <td><span class="color-red">+0.5%</span></td>
+                              <td class="numeric-cell"><span class="stock-box-red">1232.78</span></td>
+                            </tr>
+                            <tr>
+                              <td>GOOG<br><span class="ativo-nome">Alphabet Inc.</span></td>
+                              <td><span class="color-red">+0.5%</span></td>
+                              <td class="numeric-cell"><span class="stock-box-green">1232.78</span></td>
+                            </tr>
+                            <tr>
+                              <td>GOOG<br><span class="ativo-nome">Alphabet Inc.</span></td>
+                              <td><span class="color-red">+0.5%</span></td>
+                              <td class="numeric-cell"><span class="stock-box-red">1232.78</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div> 
+                  </div>
+
+                  <div id="ordens" class="tab">
+                    <div class="data-table">
+                        <br><br>
+                      <table>
+                        <thead>
+                          <tr>
+                            <th>Ação</th>
+                            <th>Qnt</th>
+                            <th>Preço</th>
+                            <th>Tipo/Status</th>
+                          </tr>
+                        </thead>
+                          <tbody>
+                            <tr>
+                              <td>GOOG<br><span class="ativo-nome">Alphabet Inc.</span></td>
+                              <td><span>43</span></td>
+                              <td>1232.78</td>
+                              <td>Compra<br><span class="color-orange">Pendente</span></td>
+                            </tr>
+                            <tr>
+                              <td>GOOG<br><span class="ativo-nome">Alphabet Inc.</span></td>
+                              <td><span>43</span></td>
+                              <td>1232.78</td>
+                              <td>Compra<br><span class="color-green">Executada</span></td>
+                            </tr>
+                            <tr>
+                              <td>GOOG<br><span class="ativo-nome">Alphabet Inc.</span></td>
+                              <td><span>43</span></td>
+                              <td>1232.78</td>
+                              <td>Compra<br><span class="color-red">Cancelada</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div> 
+                  </div> 
+
+                <div id="noticias" class="tab">
+                    <div class="data-table">
+                        <div class="card demo-card-header-pic">
+                          <div style="background-image:url(https://conteudo.imguol.com.br/c/entretenimento/49/2017/04/29/apple-1493492231072_v2_615x300.jpg)" valign="bottom" class="card-header color-white no-border">Apple</div>
+                          <div class="card-content">
+                            <div class="card-content-inner">
+                              <p class="color-gray capitalize">January 21, 2015</p>
+                              <p class="capitalize">Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus quis nibh hendrerit...</p>
+                            </div>
+                          </div>
+                          <div class="card-footer">
+                            <a href="#" class="link">Read more</a>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="data-table">
+                        <div class="card demo-card-header-pic">
+                          <div style="background-image:url(http://www.space.news/wp-content/uploads/sites/38/2015/12/elon-musk-ai-2014-10-27-01.jpg)" valign="bottom" class="card-header color-white no-border">TESLA</div>
+                          <div class="card-content">
+                            <div class="card-content-inner">
+                              <p class="color-gray capitalize">January 21, 2015</p>
+                              <p class="capitalize">Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus quis nibh hendrerit...</p>
+                            </div>
+                          </div>
+                          <div class="card-footer">
+                            <a href="#" class="link">Read more</a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+
+                  </div>
+                </div>
+                       
+            </div>
+            
+          </div>
+          <div class="toolbar tabbar tabbar-labels">
+                  <div class="toolbar-inner">
+                      <a href="#carteira" class="tab-link active" id="tab-carteira">
+                          <i class="f7-icons">card</i>
+                          <span class="tabbar-label">Carteira</span>
+                      </a>
+                      <a href="#ordens" class="tab-link" id="tab-ordens">
+                          <i class="f7-icons">compose</i>
+                           <span class="tabbar-label">Ordens</span>
+                      </a>
+                      <a href="#noticias" class="tab-link" id="tab-noticias">
+                          <i class="f7-icons">world</i>
+                          <span class="tabbar-label">Notícias</span>
+                      </a>
+                      <a href="#tab4" class="tab-link">
+                          <i class="f7-icons">person</i>
+                          <span class="tabbar-label">Conta</span>
+                      </a>
+                  </div>
+              </div>
+        </div>      
+      </div>
+    </div>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="js/framework7.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.js"></script>
+    
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/jquery.animateNumber.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="js/my-app.js"></script>
+    
+</body>
+
+</html>
