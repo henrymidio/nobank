@@ -66,7 +66,7 @@
             <div class="left">
              <a href="#" class="link icon-only open-panel"> <i class="f7-icons">persons_fill</i></a>
             </div>
-            <div class="center sliding navbar-titulo color-green"></div>
+            <div class="center sliding navbar-titulo"></div>
             <div class="right">
              <a href="#" class="link icon-only"> <i class="f7-icons" id="icon-right">search</i></a>
             </div>
@@ -84,15 +84,23 @@
                     <br><br>
 
                     <div class="center" style="line-height: 0px">
-                      <p class="big-number"><span id="cifrao">$</span><span id="current-money">$</span></p>
+                      <p class="big-number"><span class="cifrao">$</span><span class="current-money"></span></p>
                       <p class="color-green" style="margin-top: -10px;">+$84,60 (1,5%) <span style="opacity: 0.5">HOJE</span></p>
                     </div>
 
                     <!-- GRÁFICO-->
                     <div class="portfolio-chart">
                       <canvas id="myChart"></canvas>
+                      <br><br>
+                      <div class="row center color-green periodos">
+                        <div class="col-20 periodo periodo-selecionado">1D</div>
+                        <div class="col-20 periodo">1M</div>
+                        <div class="col-20 periodo">3M</div>
+                        <div class="col-20 periodo">6M</div>
+                        <div class="col-20 periodo">1A</div>
+                      </div>
                     </div>
-                    
+                    <br>
                     <div class="data-table card" style="margin-bottom: 80px;">
                       <table>
                         <thead>

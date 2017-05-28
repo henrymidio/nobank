@@ -1,5 +1,7 @@
 // Initialize your app
-var myApp = new Framework7();
+var myApp = new Framework7({
+    
+});
 
 // Export selectors engine
 var $$ = Dom7;
@@ -13,49 +15,75 @@ var mainView = myApp.addView('.view-main', {
 /*
  Provisoriamente colocar o código do index noescopo global aqui
 */
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-    datasets: [{
-      data: [12, 19, 3, 17, 6, 3, 7],
-      backgroundColor: "transparent",
-      borderColor:'#1BC191',
-    }]
-  },
-  options: {
-    title: {
-      display: false
-    },
-    legend: {
-            display: false
-    },
-    scales: {
-	    xAxes: [{
-	      display: false,
-	        
-	    }],
-	    yAxes: [{
-	        display: false,
-	    }]
-	}
-  }
-});
 
+function gerarRandom() {
+  var arr = []
+  while(arr.length < 7){
+      var randomnumber = Math.ceil(Math.random()*100)
+      if(arr.indexOf(randomnumber) > -1) continue;
+      arr[arr.length] = randomnumber;
+  }
+  return arr;
+}
+
+var myChart = renderChart(gerarRandom(), 'myChart')
+
+function renderChart(dados, elmID) {
+  var ctx = document.getElementById(elmID).getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'line',
+      data: {
+        labels: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+        datasets: [{
+          data: dados,
+          backgroundColor: "transparent",
+          borderColor:'#1BC191',
+        }]
+      },
+      options: {
+        title: {
+          display: false
+        },
+        legend: {
+                display: false
+        },
+        scales: {
+          xAxes: [{
+            display: false,
+              
+          }],
+          yAxes: [{
+              display: false,
+          }]
+      }
+    }
+  });
+  return myChart
+}
+
+$('.periodo').on('click', function(){
+  $('.periodo').removeClass('periodo-selecionado');
+  $(this).addClass('periodo-selecionado');
+  myChart.destroy()
+  renderChart(gerarRandom(), 'myChart')
+  animateNumbers(4203.56, $('.current-money'));
+})
+
+//Evento de abertura da página de detalhes da ação
 $$('.stock-row').on('click', function(){
   mainView.router.loadPage('ativo.html');
 })
 
+animateNumbers(4203.56, $('.current-money'));
+
+function animateNumbers(numero, elemento){
 //Animação da contagem de números
-// how many decimal places allows
 var decimal_places = 2;
 var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
-
-$('#current-money')
+elemento
   .animateNumber(
     {
-      number: 4203.56 * decimal_factor,
+      number: numero * decimal_factor,
 
       numberStep: function(now, tween) {
         var floored_number = Math.floor(now) / decimal_factor,
@@ -74,8 +102,10 @@ $('#current-money')
     },
     600
   );
+}
 
-  
+
+
 
 //Eventos de click na tabbar
 $('.tab-link').on('click', function(event){
@@ -83,33 +113,55 @@ $('.tab-link').on('click', function(event){
 });
 
 $('#tab-carteira').on('click', function(){
+
+  if($(this).hasClass("active")){
+    return;
+  }
+  $('#current-money').html('00,00')
   $('.tab-link').removeClass('active')
+  $('.periodo').removeClass('periodo-selecionado')
+  $(".periodo").eq(0).addClass("periodo-selecionado");
   $(this).addClass('active')
   changeTabEffect('#carteira')
-  $$('.navbar-titulo').text('');
+  $('.navbar-titulo').html('');
+  setTimeout(function(){ 
+    animateNumbers(4203.56, $('.current-money'))
+    renderChart(gerarRandom(), 'myChart') 
+  }, 400);
+  
 })
 
 $('#tab-cotacoes').on('click', function(event){
-  //Ativa ícone da tabbar
+  if($(this).hasClass("active")){
+    return;
+  }
   $('.tab-link').removeClass('active')
   $(this).addClass('active')
   changeTabEffect('#cotacoes')
-  $$('.navbar-titulo').text('4203.56');
+  $('.navbar-titulo').html('$4203.56');
+  $('.navbar-titulo').css('left', '0px');
 });
 
 $('#tab-transacoes').on('click', function(event){
-  //Ativa ícone da tabbar
+  if($(this).hasClass("active")){
+    return;
+  }
   $('.tab-link').removeClass('active')
   $(this).addClass('active')
   changeTabEffect('#transacoes')
-  $$('.navbar-titulo').text('4203.56');
+  $$('.navbar-titulo').html('$4203.56');
+  $('.navbar-titulo').css('left', '0px');
 });
 
 $$('#tab-noticias').on('click', function(){
+  if($(this).hasClass("active")){
+    return;
+  }
 	$('.tab-link').removeClass('active')
   $(this).addClass('active')
   changeTabEffect('#noticias')
-  $$('.navbar-titulo').text('4203.56');
+  $('.navbar-titulo').html('$4203.56');
+  $('.navbar-titulo').css('left', '0px');
 })
 
 function changeTabEffect(show) {
@@ -118,6 +170,7 @@ function changeTabEffect(show) {
     $$('#icon-right').text('refresh');
     $(show).slideToggle('fast');
     $(show).addClass('active');
+    myChart.destroy()
   }
   $('div.active').animate(
     {
@@ -132,7 +185,16 @@ function changeTabEffect(show) {
 
 */
 
-myApp.onPageInit('index', function (page) {
-    alert('jbh')
+myApp.onPageInit('ativo', function (page) {
+  var my2Chart = renderChart(gerarRandom(), 'ativoChart')
+  animateNumbers(853.00, $('#share-value'))
+
+  $('.periodo').on('click', function(){
+    $('.periodo').removeClass('periodo-selecionado');
+    $(this).addClass('periodo-selecionado');
+    my2Chart.destroy()
+    renderChart(gerarRandom(), 'ativoChart')
+  })
 });
+
 

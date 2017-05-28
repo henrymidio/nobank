@@ -11,15 +11,28 @@
   background-color: transparent !important;
 }
 
+.navbar-titulo {
+	font-weight: bold !important;
+}
+
 .center {
 	text-align: center;
+}
+
+.periodos {
+	margin-left: 10px; 
+	margin-right: 10px;
+}
+
+.periodo-selecionado {
+	border-bottom: 2px solid #1BC191;
 }
 
 .big-number {
 	font-size: 52px;
 }
 
-#cifrao {
+.cifrao {
 	font-size: 30px;
 }
 
