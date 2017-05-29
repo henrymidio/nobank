@@ -19,13 +19,22 @@
 	text-align: center;
 }
 
+.timeline-data-right {
+	position: absolute; right: 10%; top: 4%; color: grey;
+}
+
 .periodos {
 	margin-left: 10px; 
 	margin-right: 10px;
 }
 
 .periodo-selecionado {
+	color: #1BC191 !important;
 	border-bottom: 2px solid #1BC191;
+}
+
+.periodo {
+	color: #777;
 }
 
 .big-number {
@@ -88,3 +97,15 @@ td {
   .capitalize {
   	text-transform: capitalize;
   }
+
+ /* A bit of demo styles */;
+
+.swiper-slide {
+  background:#fff;
+}
+.swiper-slide span {
+  text-align:center;
+  display:block;
+  margin:20px;
+  font-size:21px;
+}
