@@ -109,3 +109,54 @@ td {
   margin:20px;
   font-size:21px;
 }
+
+.facebook-card .card-header {
+    display: block;
+    padding: 10px;
+  }
+  .facebook-card .facebook-avatar {
+    float: left;
+  }
+
+.facebook-card .facebook-name {
+    margin-left: 74px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1A0DAB;
+  }
+
+.layout-dark .facebook-card .facebook-name {
+    color: #fff;
+  }
+
+  .layout-dark .popup {
+  	background: #222426 !important;
+  	color: #ddd !important;
+  }
+
+  .layout-dark .list-block ul:before, .list-block.layout-dark ul:before {
+    background-color: transparent !important;
+}
+
+.layout-dark .list-block ul, .list-block.layout-dark ul {
+    background: transparent !important;
+}
+
+  .facebook-card .facebook-date {
+    margin-left: 74px;
+    font-size: 13px;
+    color: #8e8e93;
+  }
+  .facebook-card .card-footer {
+    background: #fafafa;
+  }
+  .facebook-card .card-footer a {
+    color: #81848b;
+    font-weight: 500;
+  }
+  .facebook-card .card-content img {
+    display: block;
+  }
+  .facebook-card .card-content-inner {
+    padding: 15px 10px;
+  }  

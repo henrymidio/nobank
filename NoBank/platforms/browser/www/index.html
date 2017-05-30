@@ -1,24 +1,5 @@
 <!DOCTYPE html>
-<!--
-    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
 
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
 
 <head>
@@ -38,7 +19,7 @@
     <link rel="stylesheet" href="css/framework7-icons.css">
 </head>
 
-<body class="theme-green layout-white">
+<body class="theme-green layout-dark">
     <!-- Status bar overlay for fullscreen mode-->
     <div class="statusbar-overlay"></div>
     <!-- Panels overlay-->
@@ -82,22 +63,22 @@
                 <div class="tabs">
                   <div id="carteira" class="portfolio tab active">
                     <br><br>
-
+  
                     <div class="center" style="line-height: 0px">
                       <p class="big-number"><span class="cifrao">$</span><span class="current-money"></span></p>
-                      <p class="color-green" style="margin-top: -10px;">+$84,60 (1,5%) <span style="opacity: 0.5">HOJE</span></p>
+                      <p class="color-green" style="margin-top: -10px;">+$84,60 (1,5%) <span style="color: #ccc">HOJE</span></p>
                     </div>
 
                     <!-- GRÁFICO-->
                     <div class="portfolio-chart">
                       <canvas id="myChart"></canvas>
-                      <br><br>
+                      <br>
                       <div class="row center color-green periodos">
-                        <div class="col-20 periodo periodo-selecionado">1D</div>
-                        <div class="col-20 periodo">1M</div>
-                        <div class="col-20 periodo">3M</div>
-                        <div class="col-20 periodo">6M</div>
-                        <div class="col-20 periodo">1A</div>
+                        <div class="col-20">20/5</div>
+                        <div class="col-20">10/6</div>
+                        <div class="col-20">13/6</div>
+                        <div class="col-20">28/8</div>
+                        <div class="col-20">29/11</div>
                       </div>
                     </div>
                     <br>
@@ -201,96 +182,73 @@
                   </div> 
 
                   <div id="transacoes" class="tab">
+                    <br>
+                          <!-- Timeline -->
+                          <div class="timeline" style="margin-bottom: 50px">
+                            <div class="timeline-item">
+                              <div class="timeline-data-right">14 <small>DEC</small></div>                            
+                              <div class="timeline-item-divider"></div>
+                              <div class="timeline-item-content">
+                                <div class="timeline-item-time">12:33</div>
+                                <div class="timeline-item-title">VENDA (APPL - Apple)</div>
+                                <div class="timeline-item-subtitle">65 ações a $34,00</div>
+                                <div class="timeline-item-text"><span class="color-green"><b>+3.500,00</b></span></div>
+                                <div class="timeline-item-time">12:33</div>
+                                <div class="timeline-item-title">DEPÓSITO</div>
+                                <div class="timeline-item-subtitle"></div>
+                                <div class="timeline-item-text"><span class="color-green"><b>+3.500,00</b></span></div>
+                              </div>
+                            </div>
+                            <div class="timeline-item">
+                              <div class="timeline-data-right">14 <small>DEC</small></div>
+                              <div class="timeline-item-divider"></div>
+                              <div class="timeline-item-content">
+                                <div class="timeline-item-time">13:43</div>
+                                <div class="timeline-item-title">COMPRA (GOOG - Alphabet Inc.)</div>
+                                <div class="timeline-item-subtitle">65 ações a $34,00</div>
+                                <div class="timeline-item-text"><span class="color-red"><b>-3.500,00</b></span></div>
+                              </div>
+                            </div>
+                            <div class="timeline-item">
+                              <div class="timeline-data-right">14 <small>DEC</small></div>
+                              <div class="timeline-item-divider"></div>
+                              <div class="timeline-item-content">
+                                <div class="timeline-item-time">13:43</div>
+                                <div class="timeline-item-title">COMPRA (GOOG - Alphabet Inc.)</div>
+                                <div class="timeline-item-subtitle">65 ações a $34,00</div>
+                                <div class="timeline-item-text"><span class="color-red"><b>-3.500,00</b></span></div>
+                              </div>
+                            </div>
+                          </div>
                     
-                    <div class="data-table" style="margin-bottom: 80px">
-                      <table>
-                        <br><br><br>
-                        
-                          <tr>
-                              <td class="label-cell sem-linha">APPL<br><span class="ativo-nome">FEV 14,2017</span></td>
-                              <td class="numeric-cell sem-linha">Venda</td>
-                              <td class="numeric-cell sem-linha"><span class="color-green"><b>+3.500,00</b></span><br><span class="ativo-nome">65 ações a $34,00</span></td>
-                            </tr>
-                        
-                          <tbody>
-                            
-                            <tr>
-                              <td class="label-cell">GOOG<br><span class="ativo-nome">FEV 14,2017</span></td>
-                              <td class="numeric-cell">Venda</td>
-                              <td class="numeric-cell"><span class="color-green"><b>+3.500,00</b></span><br><span class="ativo-nome">65 ações a $34,00</span></td>
-                            </tr>
-                            <tr>
-                              <td class="label-cell">TSL<br><span class="ativo-nome">FEV 14,2017</span></td>
-                              <td class="numeric-cell">Dividendo</td>
-                              <td class="numeric-cell"><span class="color-green"><b>+3.500,00</b></span><br><span class="ativo-nome">33 ações, $4,00</span></td>
-                            </tr>
-                            <tr>
-                              <td class="label-cell">GOOG<br><span class="ativo-nome">FEV 14,2017</span></td>
-                              <td class="numeric-cell">Compra</td>
-                              <td class="numeric-cell"><span class="color-red"><b>-350,00</b></span><br><span class="ativo-nome">65 ações a $34,00</span></td>
-                            </tr>
-                            <tr>
-                              <td class="label-cell">APPL<br><span class="ativo-nome">FEV 14,2017</span></td>
-                              <td class="numeric-cell">Venda</td>
-                              <td class="numeric-cell"><span class="color-green"><b>+3.500,00</b></span><br><span class="ativo-nome">65 ações a $34,00</span></td>
-                            </tr>
-                            <tr>
-                              <td class="label-cell">TSL<br><span class="ativo-nome">FEV 14,2017</span></td>
-                              <td class="numeric-cell">Dividendo</td>
-                              <td class="numeric-cell"><span class="color-green"><b>+3.500,00</b></span><br><span class="ativo-nome">33 ações, $4,00</span></td>
-                            </tr>
-                            <tr>
-                              <td class="label-cell">GOOG<br><span class="ativo-nome">FEV 14,2017</span></td>
-                              <td class="numeric-cell">Compra</td>
-                              <td class="numeric-cell"><span class="color-red"><b>-350,00</b></span><br><span class="ativo-nome">65 ações a $34,00</span></td>
-                            </tr>
-                            <tr>
-                              <td class="label-cell">APPL<br><span class="ativo-nome">FEV 14,2017</span></td>
-                              <td class="numeric-cell">Venda</td>
-                              <td class="numeric-cell"><span class="color-green"><b>+3.500,00</b></span><br><span class="ativo-nome">65 ações a $34,00</span></td>
-                            </tr>
-                            <tr>
-                              <td class="label-cell">TSL<br><span class="ativo-nome">FEV 14,2017</span></td>
-                              <td class="numeric-cell">Dividendo</td>
-                              <td class="numeric-cell"><span class="color-green"><b>+3.500,00</b></span><br><span class="ativo-nome">33 ações, $4,00</span></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                    </div> 
                   </div> 
 
                   
                 <!-- NOTICIAS-->
                 <div id="noticias" class="tab">
-                    <div class="data-table">
+                    
                       <br><br>
-                        <div class="card demo-card-header-pic">
-                          <div style="background-image:url(https://conteudo.imguol.com.br/c/entretenimento/49/2017/04/29/apple-1493492231072_v2_615x300.jpg)" valign="bottom" class="card-header color-white no-border">Apple</div>
-                          <div class="card-content">
-                            <div class="card-content-inner">
-                              <p class="color-gray capitalize">January 21, 2015</p>
-                              <p class="capitalize">Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus quis nibh hendrerit...</p>
-                            </div>
-                          </div>
-                          <div class="card-footer">
-                            <a href="#" class="link">Read more</a>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="data-table">
-                        <div class="card demo-card-header-pic">
-                          <div style="background-image:url(http://www.space.news/wp-content/uploads/sites/38/2015/12/elon-musk-ai-2014-10-27-01.jpg)" valign="bottom" class="card-header color-white no-border">TESLA</div>
-                          <div class="card-content">
-                            <div class="card-content-inner">
-                              <p class="color-gray capitalize">January 21, 2015</p>
-                              <p class="capitalize">Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus quis nibh hendrerit...</p>
-                            </div>
-                          </div>
-                          <div class="card-footer">
-                            <a href="#" class="link">Read more</a>
+                      <div style="margin-bottom: 60px">
+                                                
+                        
+
+                        <div class="card facebook-card">
+                          <div class="card-header no-border" style="min-height: 80px">
+                            <div class="facebook-avatar"><img src="http://blog.jivaldi.com/wp-content/uploads/2011/06/appleStore.jpg" width="64" height="64"></div>
+                            <div class="facebook-name">Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus</div>
+                            <div class="facebook-date"><span class="color-green">Bloomberg.com - </span>4 horas atrás</div>
                           </div>
                         </div>
-                    </div>
+
+                        <div class="card facebook-card">
+                          <div class="card-header no-border" style="min-height: 80px">
+                            <div class="facebook-avatar"><img src="http://www.space.news/wp-content/uploads/sites/38/2015/12/elon-musk-ai-2014-10-27-01.jpg" width="64" height="64"></div>
+                            <div class="facebook-name">Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus</div>
+                            <div class="facebook-date"><span class="color-green">Bloomberg.com - </span>4 horas atrás</div>
+                          </div>
+                        </div>
+                  
+                        </div>
                 </div>
 
                   </div>

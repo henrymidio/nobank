@@ -3,6 +3,11 @@ var myApp = new Framework7({
     
 });
 
+// Init slider and store its instance in mySwiper variable
+var mySwiper = myApp.swiper('.swiper-container', {
+  pagination:'.swiper-pagination'
+});
+
 // Export selectors engine
 var $$ = Dom7;
 
@@ -26,7 +31,7 @@ function gerarRandom() {
   return arr;
 }
 
-var myChart = renderChart(gerarRandom(), 'myChart')
+var myChart = renderChart([12, 34, 54, 11, 13, 6, 10], 'myChart')
 
 function renderChart(dados, elmID) {
   var ctx = document.getElementById(elmID).getContext('2d');
@@ -113,20 +118,17 @@ $('.tab-link').on('click', function(event){
 });
 
 $('#tab-carteira').on('click', function(){
-
   if($(this).hasClass("active")){
     return;
   }
   $('#current-money').html('00,00')
   $('.tab-link').removeClass('active')
-  $('.periodo').removeClass('periodo-selecionado')
-  $(".periodo").eq(0).addClass("periodo-selecionado");
   $(this).addClass('active')
   changeTabEffect('#carteira')
   $('.navbar-titulo').html('');
   setTimeout(function(){ 
     animateNumbers(4203.56, $('.current-money'))
-    renderChart(gerarRandom(), 'myChart') 
+    myChart = renderChart([12, 34, 54, 11, 13, 6, 10], 'myChart')
   }, 400);
   
 })
