@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/framework7-icons.css">
 </head>
 
-<body class="theme-green layout-dark">
+<body class="theme-green layout-white">
     <!-- Status bar overlay for fullscreen mode-->
     <div class="statusbar-overlay"></div>
     <!-- Panels overlay-->
@@ -45,11 +45,11 @@
           <div class="navbar-inner">
             <!-- We have home navbar without left link-->
             <div class="left">
-             <a href="#" class="link icon-only open-panel"> <i class="f7-icons">persons_fill</i></a>
+             <a href="#" class="link icon-only open-panel"> <i class="f7-icons color-white">persons_fill</i></a>
             </div>
-            <div class="center sliding navbar-titulo"></div>
+            <div class="center sliding navbar-titulo color-white"></div>
             <div class="right">
-             <a href="#" class="link icon-only"> <i class="f7-icons" id="icon-right">search</i></a>
+             <a href="#" class="link icon-only"> <i class="f7-icons color-white" id="icon-right">search</i></a>
             </div>
           </div>
         </div>
@@ -61,18 +61,17 @@
             <div class="page-content hide-bars-on-scroll">
               
                 <div class="tabs">
-                  <div id="carteira" class="portfolio tab active">
-                    <br><br>
-  
-                    <div class="center" style="line-height: 0px">
-                      <p class="big-number"><span class="cifrao">$</span><span class="current-money"></span></p>
-                      <p class="color-green" style="margin-top: -10px;">+$84,60 (1,5%) <span style="color: #ccc">HOJE</span></p>
+                  <div id="carteira" class="portfolio tab active"> 
+                    <div class="center" style="background: #1BC191; margin-top: -15px">
+                      <br>
+                      <p class="big-number color-white"><span class="cifrao">$</span><span class="current-money"></span></p>
+                      <p class="color-white" style="margin-top: -50px;">+$84,60 (1,5%) <span>HOJE</span></p>
+                      <br>
                     </div>
 
                     <!-- GRÁFICO-->
-                    <div class="portfolio-chart">
+                    <div class="portfolio-chart card" style="margin-top: -20px">
                       <canvas id="myChart"></canvas>
-                      <br>
                       <div class="row center color-green periodos">
                         <div class="col-20">20/5</div>
                         <div class="col-20">10/6</div>
@@ -81,50 +80,107 @@
                         <div class="col-20">29/11</div>
                       </div>
                     </div>
-                    <br>
-                    <div class="data-table card" style="margin-bottom: 80px;">
-                      <table>
-                        <thead>
-                          <tr>
-                            <th class="color-black">ATIVO</th>
-                            <th class="color-black">VARIAÇÃO</th>
-                            <th class="numeric-cell color-black">VALOR</th>
-                          </tr>
-                        </thead>
-                          <tbody>
-                            <tr class="stock-row">
-                              <td>GOOGLE<br><span class="ativo-nome">5 AÇÕES</span></td>
-                              <td><span class="color-red">+0.5%</span></td>
-                              <td class="numeric-cell"><span class="stock-box-red">1232.78</span></td>
-                            </tr>
-                            <tr>
-                              <td>APPLE<br><span class="ativo-nome">2 AÇÕES</span></td>
-                              <td><span class="color-green">+0.5%</span></td>
-                              <td class="numeric-cell"><span class="stock-box-green">1232.78</span></td>
-                            </tr>
-                            <tr>
-                              <td>TESLA<br><span class="ativo-nome">100 AÇÕES</span></td>
-                              <td><span class="color-red">+0.5%</span></td>
-                              <td class="numeric-cell"><span class="stock-box-red">1232.78</span></td>
-                            </tr>
-                            <tr>
-                              <td>STARBUCKS<br><span class="ativo-nome">1 AÇÃO</span></td>
-                              <td><span class="color-red">+0.5%</span></td>
-                              <td class="numeric-cell"><span class="stock-box-red">1232.78</span></td>
-                            </tr>
-                            <tr>
-                              <td>FORD<br><span class="ativo-nome">30 AÇÕES</span></td>
-                              <td><span class="color-green">+0.5%</span></td>
-                              <td class="numeric-cell"><span class="stock-box-green">1232.78</span></td>
-                            </tr>
-                            <tr>
-                              <td>MICROSOFT<br><span class="ativo-nome">2 AÇÕES</span></td>
-                              <td><span class="color-red">+0.5%</span></td>
-                              <td class="numeric-cell"><span class="stock-box-red">1232.78</span></td>
-                            </tr>
-                          </tbody>
-                        </table>
-                    </div> 
+<BR>
+                    <div class="center">
+                      <p style="opacity: 0.6"><b>MEU PORTFÓLIO</b></p>
+                    </div>
+                    
+                    <div class="content-block" style="margin-bottom: 0px; margin-top: 10px">
+                      <!-- Buttons row as tabs controller -->
+                      <div class="buttons-row">
+                        <!-- Link to 1st tab, active -->
+                        <a href="#" id="ativa-tab-montante" class="active button">Montante</a>
+                        <!-- Link to 2nd tab -->
+                        <a href="#" id="ativa-tab-valores" class="button">Preço</a>
+                      </div>
+                    </div>
+
+                    <!-- Tabs, tabs wrapper -->
+                    <div>
+                      <!-- Tab 1, active by default -->
+                      <div id="tabela-montante" style="margin-left: 5px; margin-right: 5px"> 
+                        <div class="data-table card" style="margin-bottom: 80px">
+                          <table>
+                            
+                            <tbody>
+                              <tr class="stock-row">
+                                <td>GOOGLE<br><span class="ativo-nome">5 AÇÕES</span></td>
+                                <td><span class="color-red">+0.5%</span></td>
+                                <td class="numeric-cell"><span class="stock-box-red">1232.78</span></td>
+                              </tr>
+                              <tr>
+                                <td>APPLE<br><span class="ativo-nome">2 AÇÕES</span></td>
+                                <td><span class="color-green">+0.5%</span></td>
+                                <td class="numeric-cell"><span class="stock-box-green">1232.78</span></td>
+                              </tr>
+                              <tr>
+                                <td>TESLA<br><span class="ativo-nome">100 AÇÕES</span></td>
+                                <td><span class="color-red">+0.5%</span></td>
+                                <td class="numeric-cell"><span class="stock-box-red">1232.78</span></td>
+                              </tr>
+                              <tr>
+                                <td>STARBUCKS<br><span class="ativo-nome">1 AÇÃO</span></td>
+                                <td><span class="color-red">+0.5%</span></td>
+                                <td class="numeric-cell"><span class="stock-box-red">1232.78</span></td>
+                              </tr>
+                              <tr>
+                                <td>FORD<br><span class="ativo-nome">30 AÇÕES</span></td>
+                                <td><span class="color-green">+0.5%</span></td>
+                                <td class="numeric-cell"><span class="stock-box-green">1232.78</span></td>
+                              </tr>
+                              <tr>
+                                <td>MICROSOFT<br><span class="ativo-nome">2 AÇÕES</span></td>
+                                <td><span class="color-red">+0.5%</span></td>
+                                <td class="numeric-cell"><span class="stock-box-red">1232.78</span></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div> 
+                      </div>
+
+                      <!-- Tab 2 -->
+                      <div id="tabela-valores" class="none" style="margin-left: 5px; margin-right: 5px">
+                        <div class="data-table card" style="margin-bottom: 80px">
+                          <table>
+                            
+                            <tbody>
+                              <tr class="stock-row">
+                                <td>GOOGLE<br><span class="ativo-nome">Alphabet Inc.</span></td>
+                                <td><span class="color-red">+0.5%</span></td>
+                                <td class="numeric-cell"><span class="stock-box-red">832.78</span></td>
+                              </tr>
+                              <tr>
+                                <td>APPLE<br><span class="ativo-nome">2 AÇÕES</span></td>
+                                <td><span class="color-green">+0.5%</span></td>
+                                <td class="numeric-cell"><span class="stock-box-green">1232.78</span></td>
+                              </tr>
+                              <tr>
+                                <td>TESLA<br><span class="ativo-nome">100 AÇÕES</span></td>
+                                <td><span class="color-red">+0.5%</span></td>
+                                <td class="numeric-cell"><span class="stock-box-red">1232.78</span></td>
+                              </tr>
+                              <tr>
+                                <td>STARBUCKS<br><span class="ativo-nome">1 AÇÃO</span></td>
+                                <td><span class="color-red">+0.5%</span></td>
+                                <td class="numeric-cell"><span class="stock-box-red">1232.78</span></td>
+                              </tr>
+                              <tr>
+                                <td>FORD<br><span class="ativo-nome">30 AÇÕES</span></td>
+                                <td><span class="color-green">+0.5%</span></td>
+                                <td class="numeric-cell"><span class="stock-box-green">1232.78</span></td>
+                              </tr>
+                              <tr>
+                                <td>MICROSOFT<br><span class="ativo-nome">2 AÇÕES</span></td>
+                                <td><span class="color-red">+0.5%</span></td>
+                                <td class="numeric-cell"><span class="stock-box-red">1232.78</span></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div> 
+                      </div>
+
+                    </div>
+                    
                   </div>
 
                   <div id="cotacoes" class="tab">
@@ -219,19 +275,15 @@
                                 <div class="timeline-item-text"><span class="color-red"><b>-3.500,00</b></span></div>
                               </div>
                             </div>
-                          </div>
-                    
+                          </div> 
                   </div> 
 
                   
                 <!-- NOTICIAS-->
                 <div id="noticias" class="tab">
-                    
                       <br><br>
-                      <div style="margin-bottom: 60px">
-                                                
-                        
 
+                      <div style="margin-bottom: 60px">
                         <div class="card facebook-card">
                           <div class="card-header no-border" style="min-height: 80px">
                             <div class="facebook-avatar"><img src="http://blog.jivaldi.com/wp-content/uploads/2011/06/appleStore.jpg" width="64" height="64"></div>
@@ -248,7 +300,7 @@
                           </div>
                         </div>
                   
-                        </div>
+                      </div>
                 </div>
 
                   </div>

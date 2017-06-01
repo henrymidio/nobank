@@ -183,6 +183,20 @@ function changeTabEffect(show) {
   );
 }
 
+//Tabelas montante e preços
+$('#ativa-tab-valores').on('click', function(){
+  $(this).toggleClass('active');
+  $('#ativa-tab-montante').toggleClass('active');
+  $('#tabela-valores').toggleClass('none');
+  $('#tabela-montante').toggleClass('none');
+})
+$('#ativa-tab-montante').on('click', function(){
+  $(this).toggleClass('active');
+  $('#ativa-tab-valores').toggleClass('active');
+  $('#tabela-valores').toggleClass('none');
+  $('#tabela-montante').toggleClass('none');
+})
+
 /*
 
 */
