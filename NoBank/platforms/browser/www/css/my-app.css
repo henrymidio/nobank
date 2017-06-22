@@ -126,6 +126,10 @@ td {
 	opacity: 0.7;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 
 .stock-box-red {
 	background: red; border: 1px solid #ff3b30; padding: 6px; border-radius: 10px; color: white; border-radius: 27px;
@@ -189,21 +193,17 @@ td {
     background: transparent !important;
 }
 
-  .facebook-card .facebook-date {
-    margin-left: 74px;
-    font-size: 13px;
-    color: #8e8e93;
+  
+
+  .login-botoes {
+    margin: 15px;
   }
-  .facebook-card .card-footer {
-    background: #fafafa;
+
+  .login-botoes a {
+    margin-top: 8px;
   }
-  .facebook-card .card-footer a {
-    color: #81848b;
-    font-weight: 500;
+
+  .login-logotipo {
+    width: 200px;
+    height: 200px;
   }
-  .facebook-card .card-content img {
-    display: block;
-  }
-  .facebook-card .card-content-inner {
-    padding: 15px 10px;
-  }  
