@@ -33,12 +33,12 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-      alert('device-ready')
+      //alert('device-ready')
         app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        alert('executado')
+        //alert('executado')
         /*
         myApp.onPageInit('index', function (page) {
             
