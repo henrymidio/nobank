@@ -35,7 +35,7 @@ td {
 }
 
 .navbar {
-  background: #1BC191 !important;
+  background: #009EC2 !important;
 }
 
 .navbar-transparent { background: transparent !important; }
@@ -61,6 +61,12 @@ td {
   margin-left: 20px;
 }
 
+.header-navigation-drawer {
+  background-color: #009EC2;
+  padding: 12px;
+  color: white;
+}
+
 .none {
   display: none;
 }
@@ -75,8 +81,8 @@ td {
 }
 
 .periodo-selecionado {
-	color: #1BC191 !important;
-	border-bottom: 2px solid #1BC191;
+	color: #009EC2 !important;
+	border-bottom: 2px solid #009EC2;
 }
 
 .periodo {
@@ -97,6 +103,11 @@ td {
 
 td {
 	font-weight: 550;
+}
+
+
+.layout-white .checkout .item-inner:after {
+    background-color: transparent !important;
 }
 
 .data-table tbody td.sem-linha:before {
@@ -136,7 +147,16 @@ td {
 }
 
 .stock-box-green {
-	background: #1BC191; border: 1px solid #1BC191; padding: 6px; border-radius: 10px; color: white; border-radius: 27px;
+	background: #009EC2; border: 1px solid #009EC2; padding: 6px; border-radius: 10px; color: white; border-radius: 27px;
+}
+
+.background-color-nasdaq { 
+ background-color: #009EC2 !important;
+}
+
+.color-nasdaq {
+
+  color: #009EC2 !important;
 }
   
 .demo-card-header-pic .card-header {

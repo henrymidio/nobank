@@ -19,20 +19,63 @@
     <link rel="stylesheet" href="css/framework7-icons.css">
 </head>
 
-<body class="theme-green layout-dark">
+<body class="theme-blue layout-dark">
     <!-- Status bar overlay for fullscreen mode-->
     <div class="statusbar-overlay"></div>
     <!-- Panels overlay-->
     <div class="panel-overlay"></div>
     <!-- Left panel with reveal effect-->
     <div class="panel panel-left panel-cover">
-      <div class="content-block">
-        <h3>NoBank Investments</h3>
+      <div class="header-navigation-drawer center">
+        <h2>NoBank Investments</h2>
         <div class="row">
           <div class="col-50">$<span style="font-size: 24px">43.852,57</span><br><span style="opacity: 0.6">INVESTIDO</span></div>
           <div class="col-50">$<span style="font-size: 24px">00,00</span><br><span style="opacity: 0.6">DISPONÍVEL</span></div>
         </div>
       </div>
+      <div class="list-block" style="margin-top: 6px">
+        <ul>
+          <li class="item-content">
+            <div class="item-media"><i class="f7-icons color-nasdaq">briefcase</i></div>
+            <div class="item-inner">
+              <div class="item-title">Conta</div>
+            </div>
+          </li>
+          <li class="item-content">
+            <div class="item-media"><i class="f7-icons color-nasdaq">persons</i></i></div>
+            <div class="item-inner">
+              <div class="item-title">Ranking</div>
+            </div>
+          </li>
+          <li class="item-content">
+            <div class="item-media"><i class="f7-icons color-nasdaq">settings</i></div>
+            <div class="item-inner">
+              <div class="item-title">Configurações</div>
+            </div>
+          </li>
+          <li class="item-content">
+            <div class="item-media"><i class="f7-icons color-nasdaq">world</i></div>
+            <div class="item-inner">
+              <div class="item-title">Notícias</div>
+            </div>
+          </li>
+          <li class="item-content">
+            <div class="item-media"><i class="f7-icons color-nasdaq">chats</i></div>
+            <div class="item-inner">
+              <div class="item-title">Contato</div>
+            </div>
+          </li>
+        </ul>
+
+
+        <!--
+        <div>
+          <canvas id="pizzaChart"></canvas>
+        </div>
+        -->
+        
+      </div>
+      
     </div>
     
     <!-- Views-->
@@ -61,7 +104,7 @@
               
                 <div class="tabs">
                   <div id="carteira" class="portfolio tab active"> 
-                    <div class="center" style="background: #1BC191; margin-top: -15px">
+                    <div class="center background-color-nasdaq" style="margin-top: -15px">
                       <br>
                       <p class="big-number color-white"><span class="cifrao">$</span><span class="current-money"></span></p>
                       <p class="color-white" style="margin-top: -50px;">+$84,60 (1,5%) <span>HOJE</span></p>
@@ -71,7 +114,7 @@
                     <!-- GRÁFICO-->
                     <div class="portfolio-chart card" style="margin-top: -20px">
                       <canvas id="myChart"></canvas>
-                      <div class="row center color-green periodos">
+                      <div class="row center color-nasdaq periodos">
                         <div class="col-20">20/5</div>
                         <div class="col-20">10/6</div>
                         <div class="col-20">13/6</div>
@@ -88,9 +131,9 @@
                       <!-- Buttons row as tabs controller -->
                       <div class="buttons-row">
                         <!-- Link to 1st tab, active -->
-                        <a href="#" id="ativa-tab-montante" class="active button">Montante</a>
+                        <a href="#" id="ativa-tab-montante" class="color-blue active button">Montante</a>
                         <!-- Link to 2nd tab -->
-                        <a href="#" id="ativa-tab-valores" class="button">Preço</a>
+                        <a href="#" id="ativa-tab-valores" class="color-blue button">Preço</a>
                       </div>
                     </div>
 
@@ -108,7 +151,7 @@
                               </tr>
                               <tr>
                                 <td><b>AAPL</b><br><span class="ativo-nome">2 AÇÕES</span></td>
-                                <td><span class="color-green">+0.5%</span></td>
+                                <td><span class="color-nasdaq">+0.5%</span></td>
                                 <td class="numeric-cell"><span class="stock-box-green">292.68</span></td>
                               </tr>
                               <tr>
@@ -123,7 +166,7 @@
                               </tr>
                               <tr>
                                 <td><b>FDMO34</b><br><span class="ativo-nome">30 AÇÕES</span></td>
-                                <td><span class="color-green">+0.5%</span></td>
+                                <td><span class="color-nasdq">+0.5%</span></td>
                                 <td class="numeric-cell"><span class="stock-box-green">1128.00</span></td>
                               </tr>
                               <tr>
@@ -149,7 +192,7 @@
                               </tr>
                               <tr>
                                 <td>AAPL<br><span class="ativo-nome">2 AÇÕES</span></td>
-                                <td><span class="color-green">+0.5%</span></td>
+                                <td><span class="color-nasdaq">+0.5%</span></td>
                                 <td class="numeric-cell"><span class="stock-box-green">47.85</span></td>
                               </tr>
                               <tr>
@@ -164,7 +207,7 @@
                               </tr>
                               <tr>
                                 <td>FDMO34<br><span class="ativo-nome">30 AÇÕES</span></td>
-                                <td><span class="color-green">+0.5%</span></td>
+                                <td><span class="color-nasdaq">+0.5%</span></td>
                                 <td class="numeric-cell"><span class="stock-box-green">37.60</span></td>
                               </tr>
                               <tr>
@@ -183,7 +226,7 @@
 
                   <div id="cotacoes" class="tab">
                     <br><br>
-                    <div class="row center color-white" style="background: #1BC191; padding: 10px; ">
+                    <div class="row center color-white background-color-nasdaq" style="padding: 10px; ">
                       <div class="col-25" style="border-left: 2px solid red">
                         <b>Dólar</b><br>3,28<br>-0,3%
                       </div>
@@ -299,7 +342,7 @@
                 <div id="noticias" class="tab">
                       <br><br>
                     <div style="margin-left: 5px">
-                      <div class="content-block-title bold" style="color: black">Dúvidas Frequentes</div>
+                      <div class="content-block-title bold">Dúvidas Frequentes</div>
                       <div class="list-block">
                         <ul>
                           <li class="accordion-item"><a href="#" class="item-content item-link">
@@ -308,17 +351,21 @@
                               </div></a>
                             <div class="accordion-item-content">
                               <div class="content-block">
-                                <p>Item 1 content. Lorem ipsum dolor sit amet...</p>
+                                <p>Na ordem a mercado, a ordem é executada ao preço ofertado pela contraparte da operação e o investidor não determina preço limite para sua execução.
+Em uma operação de compra, a ordem é executada pelo preço do melhor vendedor e, em uma operação de venda, a ordem é executada pelo preço do melhor comprador. 
+Contudo, deve-se atentar ao fato de que neste tipo de ordem o sistema, na verdade, definirá automaticamente um "preço limite", cujo valor terá uma variação de 5% em relação à última cotação do papel. Se for compra, o preço limite será fixado automaticamente com uma variação de 5% superior à última cotação. Se for venda, o preço limite será fixado automaticamente com uma variação de 5% inferior à última cotação.</p>
                               </div>
                             </div>
                           </li>
                           <li class="accordion-item"><a href="#" class="item-content item-link">
                               <div class="item-inner">
-                                <div class="item-title">O que é Ordem Limite?</div>
+                                <div class="item-title">O que é Ordem Limitada?</div>
                               </div></a>
                             <div class="accordion-item-content">
                               <div class="content-block">
-                                <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
+                                <p>Na Ordem Limitada o investidor delimita o limite de preço para que a ordem seja executada. São prontamente enviadas para a bolsa e ficam na fila, aguardando a execução.Esta ordem permite total controle do preço de execução:
+Não é garantido que seja executada. O ativo pode não atingir o limite estabelecido ou ainda que o atinja, poderão existir ordens de outros investidores ao mesmo preço limite, colocadas antes da sua;
+A ordem é executada por preço melhor ou igual ao preço definido. Se o investidor colocar uma ordem de compra limitada a R$ 10,00 e existir vendedor a R$ 8,00, a ordem será executada a R$ 8,00 e não a R$ 10,00. Na venda, o conceito é o mesmo. Se você colocar venda a R$ 9,00 e tiver comprador a R$ 11,00, sua ordem de venda será executada a R$ 11,00.</p>
                               </div>
                             </div>
                           </li>
@@ -328,7 +375,8 @@
                               </div></a>
                             <div class="accordion-item-content">
                               <div class="content-block">
-                                <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
+                                <p>É um tipo de ordem enviada à bolsa somente quando a cotação do papel atingir ou passar pelo valor stop. O valor stop é igual ao valor limite previamente estipulado pelo investidor.
+Seu intuito é limitar prejuízos no caso de ordens de venda. </p>
                               </div>
                             </div>
                           </li>
@@ -338,7 +386,9 @@
                               </div></a>
                             <div class="accordion-item-content">
                               <div class="content-block">
-                                <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
+                                <p>NASDAQ Stock Market ou simplesmente NASDAQ (acrônimo de National Association of Securities Dealers Automated Quotations; em português, "Associação Nacional de Corretores de Títulos de Cotações Automáticas") é um mercado de ações automatizado norte-americano onde estão listadas mais de 2800 ações de diferentes empresas, em sua maioria de pequena e média capitalização. É o segundo maior mercado de ações em capitalização de mercado do mundo, depois da Bolsa de Nova York. A plataforma de operações é de propriedade do NASDAQ OMX Group, que também é o proprietário da rede de mercados de ações OMX.
+
+O NASDAQ caracteriza-se por reunir empresas de alta tecnologia em eletrônica, informática, telecomunicações, biotecnologia, etc.</p>
                               </div>
                             </div>
                           </li>
@@ -348,7 +398,7 @@
                               </div></a>
                             <div class="accordion-item-content">
                               <div class="content-block">
-                                <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
+                                <p>Das 9:30 às 16:00</p>
                               </div>
                             </div>
                           </li>
@@ -358,7 +408,7 @@
                               </div></a>
                             <div class="accordion-item-content">
                               <div class="content-block">
-                                <p>Item 2 content. Lorem ipsum dolor sit amet...</p>
+                                <p>A corretagem é uma taxa paga à título de remuneração de um intermediário financeiro pelos seus clientes. Normalmente, a corretagem é paga no momento da realização de uma operação de compra e venda de ativos mobiliários e corresponde à uma taxa fixa (corretagem fixa) ou uma porcentagem do volume do negócio realizado (corretagem variável).</p>
                               </div>
                             </div>
                           </li>

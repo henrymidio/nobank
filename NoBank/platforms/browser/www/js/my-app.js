@@ -13,8 +13,11 @@ var mainView = myApp.addView('.view-main', {
 });
 
 myApp.onPageInit('ativo', function (page) {
-  var my2Chart = renderChart(gerarRandom(), 'ativoChart')
-  animateNumbers(957.37, $('#share-value'))
+  var my2Chart;
+  setTimeout(function() { 
+    my2Chart = renderChart(gerarRandom(), 'ativoChart')
+    animateNumbers(957.37, $('#share-value'))
+  }, 500);
 
   $('.periodo').on('click', function(){
     $('.periodo').removeClass('periodo-selecionado');
@@ -27,6 +30,7 @@ myApp.onPageInit('ativo', function (page) {
  myApp.onPageInit('index', function (page) {
             
             var myChart = renderChart([12, 34, 54, 11, 13, 6, 10], 'myChart')
+            
 
             $('.periodo').on('click', function(){
               $('.periodo').removeClass('periodo-selecionado');

@@ -10,16 +10,16 @@ function gerarRandom() {
 }
 
 //Contrói e renderiza o gráfico
-function renderChart(dados, elmID) {
+function renderChart(dados, elmID, type='line') {
   var ctx = document.getElementById(elmID).getContext('2d');
   var myChart = new Chart(ctx, {
-    type: 'line',
+    type: type,
       data: {
         labels: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
         datasets: [{
           data: dados,
           backgroundColor: "transparent",
-          borderColor:'#1BC191',
+          borderColor:'#009EC2',
         }]
       },
       options: {
