@@ -27,7 +27,7 @@ function isMarketOpen() {
 
 //Gera um array de números randômicos
 function gerarRandom() {
-  var arr = []
+  var arr = [];
   while(arr.length < 7){
       var randomnumber = Math.ceil(Math.random()*100)
       if(arr.indexOf(randomnumber) > -1) continue;
@@ -37,7 +37,7 @@ function gerarRandom() {
 }
 
 //Contrói e renderiza o gráfico
-function renderChart(dados, elmID, type='line') {
+function renderChart(dados, elmID, type = 'line') {
   var ctx = document.getElementById(elmID).getContext('2d');
   var myChart = new Chart(ctx, {
     type: type,
@@ -72,11 +72,10 @@ function renderChart(dados, elmID, type='line') {
 
 //Exibe número de forma animada
 function animateNumbers(numero, elemento){
-//Animação da contagem de números
-var decimal_places = 2;
-var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
-elemento
-  .animateNumber(
+  //Animação da contagem de números
+  var decimal_places = 2;
+  var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
+  elemento.animateNumber(
     {
       number: numero * decimal_factor,
 
