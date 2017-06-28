@@ -13,7 +13,7 @@ var mainView = myApp.addView('.view-main', {
 });
 
 //verifica se o pregão está aberto para setar o theme layout
-isMarketOpen();
+//isMarketOpen();
 
 myApp.onPageInit('a-mercado', function (page) {
   $('#ordena').on('click', function(){

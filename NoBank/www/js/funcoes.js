@@ -1,14 +1,14 @@
-
+alert('inicia funcoes')
 function isMarketOpen() {
-  alert('inicia mo')
+
   var dt = new Date();
-  alert(dt)
+ 
   var startTime = '10:30:00';
   var endTime = '17:00:00';
 
   var s =  startTime.split(':');
   var dt1 = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(), parseInt(s[0]), parseInt(s[1]), parseInt(s[2]));
-  alert(dt1)
+  
   var e =  endTime.split(':');
   var dt2 = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(),parseInt(e[0]), parseInt(e[1]), parseInt(e[2]));
 
