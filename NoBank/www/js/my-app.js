@@ -13,8 +13,8 @@ var mainView = myApp.addView('.view-main', {
 });
 
 //verifica se o pregão está aberto para setar o theme layout
-var testeR = isMarketOpen();
-alert(testeR)
+//var testeR = isMarketOpen();
+//alert(testeR)
 myApp.onPageInit('a-mercado', function (page) {
   $('#ordena').on('click', function(){
       myApp.confirm('Tem certeza que deseja executar esta operação?', function () {
@@ -26,10 +26,11 @@ myApp.onPageInit('a-mercado', function (page) {
 
 myApp.onPageInit('ativo', function (page) {
   //Verifica se o mercado está aberto para liberar os botões de compra/venda
+  /*
   if(!isMarketOpen()) {
     $('.ordenar').addClass('button-disabled').attr('data-popup', '#');
   }
-
+*/
   //Aguarda 500ms após a renderização da página para renderizar o gráfico
   var my2Chart;
   setTimeout(function() { 
