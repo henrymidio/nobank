@@ -1,4 +1,4 @@
-
+/*
 function isMarketOpen() {
 
   var dt = new Date();
@@ -20,7 +20,7 @@ function isMarketOpen() {
     return false;
   }
 }
-
+*/
 
 //Gera um array de números randômicos
 function gerarRandom() {

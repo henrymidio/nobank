@@ -11,15 +11,15 @@ var mainView = myApp.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     dynamicNavbar: true
 });
-alert('before open')
+
 //verifica se o pregão está aberto para setar o theme layout
 //isMarketOpen();
-alert('after open')
+
 
  myApp.onPageInit('index', function (page) {
-            alert('index')
-            var myChart = renderChart([12, 34, 54, 11, 13, 6, 10], 'myChart')
             
+            var myChart = renderChart([12, 34, 54, 11, 13, 6, 10], 'myChart')
+            alert('render')
 
             $('.periodo').on('click', function(){
               $('.periodo').removeClass('periodo-selecionado');
@@ -133,10 +133,11 @@ myApp.onPageInit('a-mercado', function (page) {
 
 myApp.onPageInit('ativo', function (page) {
   //Verifica se o mercado está aberto para liberar os botões de compra/venda
+  /*
   if(!isMarketOpen()) {
     $('.ordenar').addClass('button-disabled').attr('data-popup', '#');
   }
-
+*/
   //Aguarda 500ms após a renderização da página para renderizar o gráfico
   var my2Chart;
   setTimeout(function() { 
