@@ -11,7 +11,7 @@ var mainView = myApp.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     dynamicNavbar: true
 });
-
+alert('antes do open')
 //verifica se o pregão está aberto para setar o theme layout
 isMarketOpen();
 
