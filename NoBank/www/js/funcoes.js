@@ -1,5 +1,6 @@
 
 function isMarketOpen() {
+  alert('inicia mo')
   var dt = new Date();
   alert(dt)
   var startTime = '10:30:00';
