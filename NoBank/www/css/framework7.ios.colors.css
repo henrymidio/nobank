@@ -1166,27 +1166,27 @@ html:not(.watch-active-state) .speed-dial-buttons a.theme-pink:active,
   color: #fff;
 }
 .theme-blue .button:not(.button-fill) {
-  border-color: #007aff;
+  border-color: #009EC2;
 }
 html:not(.watch-active-state) .theme-blue .button:not(.button-fill):active,
 .theme-blue .button:not(.button-fill).active-state {
   background-color: rgba(0, 122, 255, 0.15);
 }
 .theme-blue .button:not(.button-fill).active {
-  background-color: #007aff;
+  background-color: #009EC2;
   color: #fff;
 }
 .theme-blue .button.button-fill {
-  background: #007aff;
+  background: #009EC2;
   color: #fff;
 }
 .progressbar.theme-blue span,
 .theme-blue .progressbar span {
-  background-color: #007aff;
+  background-color: #009EC2;
 }
 .progressbar-infinite.theme-blue:before,
 .theme-blue .progressbar-infinite:before {
-  background-color: #007aff;
+  background-color: #009EC2;
 }
 .theme-blue i.icon,
 i.icon.theme-blue {
