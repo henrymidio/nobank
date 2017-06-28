@@ -14,7 +14,7 @@ var mainView = myApp.addView('.view-main', {
 
 //verifica se o pregão está aberto para setar o theme layout
 isMarketOpen();
-alert('after open')
+
 myApp.onPageInit('a-mercado', function (page) {
   $('#ordena').on('click', function(){
       myApp.confirm('Tem certeza que deseja executar esta operação?', function () {
@@ -47,7 +47,7 @@ myApp.onPageInit('ativo', function (page) {
 });
 
  myApp.onPageInit('index', function (page) {
-            alert('index')
+            
             var myChart = renderChart([12, 34, 54, 11, 13, 6, 10], 'myChart')
             
 
