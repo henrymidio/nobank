@@ -37,10 +37,10 @@ function gerarRandom() {
 }
 
 //Contrói e renderiza o gráfico
-function renderChart(dados, elmID, type = 'line') {
+function renderChart(dados, elmID) {
   var ctx = document.getElementById(elmID).getContext('2d');
   var myChart = new Chart(ctx, {
-    type: type,
+    type: 'line',
       data: {
         labels: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
         datasets: [{
