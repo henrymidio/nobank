@@ -35,6 +35,7 @@ function gerarRandom() {
 
 //Contrói e renderiza o gráfico
 function renderChart(dados, elmID, type='line') {
+  alert(dados)
   var ctx = document.getElementById(elmID).getContext('2d');
   var myChart = new Chart(ctx, {
     type: type,
