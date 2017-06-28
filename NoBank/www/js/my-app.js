@@ -12,6 +12,7 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
+atoa()
 //verifica se o pregão está aberto para setar o theme layout
 isMarketOpen();
 
