@@ -12,7 +12,25 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
+//verifica se o pregão está aberto para setar o theme layout
+var testeR = isMarketOpen();
+alert(testeR)
+myApp.onPageInit('a-mercado', function (page) {
+  $('#ordena').on('click', function(){
+      myApp.confirm('Tem certeza que deseja executar esta operação?', function () {
+          myApp.alert('Sua ordem foi executada com sucesso!');
+          mainView.router.loadPage('index.html');
+      });
+  });
+});
+
 myApp.onPageInit('ativo', function (page) {
+  //Verifica se o mercado está aberto para liberar os botões de compra/venda
+  if(!isMarketOpen()) {
+    $('.ordenar').addClass('button-disabled').attr('data-popup', '#');
+  }
+
+  //Aguarda 500ms após a renderização da página para renderizar o gráfico
   var my2Chart;
   setTimeout(function() { 
     my2Chart = renderChart(gerarRandom(), 'ativoChart')
@@ -24,7 +42,8 @@ myApp.onPageInit('ativo', function (page) {
     $(this).addClass('periodo-selecionado');
     my2Chart.destroy()
     renderChart(gerarRandom(), 'ativoChart')
-  })
+  });
+
 });
 
  myApp.onPageInit('index', function (page) {

@@ -114,6 +114,18 @@ td {
 	background-color: transparent;
 }
 
+.checkout input {
+  text-align: right;
+}
+
+.button-disabled {
+  opacity: 0.4;
+}
+
+.item-disable {
+  opacity: 0.4
+}
+
 .news {
 	background: rgba(255, 255, 255, 0.9);
 	color: rgb(65, 117, 164);
