@@ -1,4 +1,4 @@
-alert('inicia funcoes')
+
 function isMarketOpen() {
 
   var dt = new Date();
