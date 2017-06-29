@@ -28,6 +28,11 @@ function User() {
 			'empresa': 'Alphabet Inc.',
 			'simbolo': 'GOOGL',
 			'quantidade': 1
+		},
+		{
+			'empresa': 'Staples',
+			'simbolo': 'SPLS',
+			'quantidade': 100
 		}
 	]
 	localStorage.setItem("portfolioStocks", JSON.stringify(portfolio));
@@ -64,7 +69,10 @@ function User() {
 
 	this.getPortfolioPrices = function() {
 		var portfolio = JSON.parse(localStorage.getItem("portfolioStocks"));
-		
+		if(!$.trim($("#tabela-valores tbody").html())=='') {
+			return false;
+		}
+		$('#tabela-valores tbody').empty();
 		for (var index in portfolio) {
 			var line = "<tr class="+portfolio[index]['simbolo']+">"
 	          + "<td><b>"+portfolio[index]['simbolo']+"</b><br><span class='ativo-nome'>"+portfolio[index]['empresa']+"</span></td>"
@@ -102,7 +110,7 @@ function User() {
 	    	$('#tabela-montante tbody').append(line);
 	    }
 		for (var index in portfolio) {
-			
+
         	$.getJSON("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+portfolio[index]['simbolo']+"&apikey=VFAVA1B9R16KT761", function success(result, status) {
         	  var simbolo = result['Realtime Global Securities Quote']['01. Symbol'];
         	  var preco = result['Realtime Global Securities Quote']['03. Latest Price'];
