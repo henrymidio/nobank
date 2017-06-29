@@ -1,6 +1,3 @@
-function atoa(){
-  alert('atoa')
-}
 
 function isMarketOpen() {
 

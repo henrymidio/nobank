@@ -1,12 +1,14 @@
-function isMarketOpen() {
-  var dt = new Date();
 
+function isMarketOpen() {
+
+  var dt = new Date();
+ 
   var startTime = '10:30:00';
   var endTime = '17:00:00';
 
   var s =  startTime.split(':');
   var dt1 = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(), parseInt(s[0]), parseInt(s[1]), parseInt(s[2]));
-
+  
   var e =  endTime.split(':');
   var dt2 = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(),parseInt(e[0]), parseInt(e[1]), parseInt(e[2]));
 
@@ -22,7 +24,7 @@ function isMarketOpen() {
 
 //Gera um array de números randômicos
 function gerarRandom() {
-  var arr = []
+  var arr = [];
   while(arr.length < 7){
       var randomnumber = Math.ceil(Math.random()*100)
       if(arr.indexOf(randomnumber) > -1) continue;
@@ -32,10 +34,10 @@ function gerarRandom() {
 }
 
 //Contrói e renderiza o gráfico
-function renderChart(dados, elmID, type='line') {
+function renderChart(dados, elmID) {
   var ctx = document.getElementById(elmID).getContext('2d');
   var myChart = new Chart(ctx, {
-    type: type,
+    type: 'line',
       data: {
         labels: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
         datasets: [{
@@ -67,11 +69,10 @@ function renderChart(dados, elmID, type='line') {
 
 //Exibe número de forma animada
 function animateNumbers(numero, elemento){
-//Animação da contagem de números
-var decimal_places = 2;
-var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
-elemento
-  .animateNumber(
+  //Animação da contagem de números
+  var decimal_places = 2;
+  var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
+  elemento.animateNumber(
     {
       number: numero * decimal_factor,
 

@@ -119,7 +119,7 @@ td {
 }
 
 .button-disabled {
-  opacity: 0.4;
+  opacity: 0.2;
 }
 
 .item-disable {
@@ -158,7 +158,7 @@ td {
 	background: red; border: 1px solid #ff3b30; padding: 6px; border-radius: 10px; color: white; border-radius: 27px;
 }
 
-.stock-box-green {
+.stock-box-blue {
 	background: #009EC2; border: 1px solid #009EC2; padding: 6px; border-radius: 10px; color: white; border-radius: 27px;
 }
 

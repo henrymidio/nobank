@@ -1190,7 +1190,7 @@ html:not(.watch-active-state) .theme-blue .button:not(.button-fill):active,
 }
 .theme-blue i.icon,
 i.icon.theme-blue {
-  color: #007aff;
+  color: #009EC2;
 }
 i.icon-next.color-blue,
 i.icon-next.theme-blue,
@@ -1227,7 +1227,7 @@ i.icon-bars.theme-blue,
 .theme-blue a,
 .theme-blue .item-link.list-button,
 .theme-blue .list-button {
-  color: #007aff;
+  color: #009EC2;
 }
 .theme-blue .tabbar a,
 .tabbar.theme-blue a,
@@ -1239,10 +1239,10 @@ i.icon-bars.theme-blue,
 .tabbar.theme-blue a.active,
 .theme-blue .tabbar a.active i,
 .tabbar.theme-blue a.active i {
-  color: #007aff;
+  color: #009EC2;
 }
 .theme-blue .messagebar .messagebar-send-link {
-  background-color: #007aff;
+  background-color: #009EC2;
 }
 .theme-blue label.label-checkbox input[type="checkbox"]:checked + .item-media i.icon-form-checkbox,
 .theme-blue label.label-checkbox input[type="radio"]:checked + .item-media i.icon-form-checkbox,
@@ -1250,7 +1250,7 @@ i.icon-bars.theme-blue,
 label.label-checkbox.theme-blue input[type="checkbox"]:checked + .item-media i.icon-form-checkbox,
 label.label-checkbox.theme-blue input[type="radio"]:checked + .item-media i.icon-form-checkbox,
 .form-checkbox.theme-blue input[type="checkbox"]:checked ~ i {
-  background-color: #007aff;
+  background-color: #009EC2;
 }
 .theme-blue .form-radio input[type="radio"]:checked ~ i,
 .theme-blue label.label-radio input[type="checkbox"]:checked ~ .item-inner,
@@ -1261,7 +1261,7 @@ label.label-radio.theme-blue input[type="radio"]:checked ~ .item-inner {
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2013%2010'%3E%3Cpolygon%20fill%3D'%23007aff'%20points%3D'11.6%2C0%204.4%2C7.2%201.4%2C4.2%200%2C5.6%204.4%2C10%204.4%2C10%204.4%2C10%2013%2C1.4%20'%2F%3E%3C%2Fsvg%3E");
 }
 .theme-blue .picker-calendar-day.picker-calendar-day-selected span {
-  background-color: #007aff !important;
+  background-color: #009EC2 !important;
 }
 .theme-blue .data-table .data-table-header-selected,
 .data-table.theme-blue .data-table-header-selected {
@@ -1269,15 +1269,15 @@ label.label-radio.theme-blue input[type="radio"]:checked ~ .item-inner {
 }
 .theme-blue .data-table .data-table-title-selected,
 .data-table.theme-blue .data-table-title-selected {
-  color: #007aff;
+  color: #009EC2;
 }
 .swiper-pagination.color-blue .swiper-pagination-bullet-active,
 .theme-blue .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #007aff;
+  background-color: #009EC2;
 }
 .swiper-pagination.color-blue .swiper-pagination-progressbar,
 .theme-blue .swiper-pagination .swiper-pagination-progressbar {
-  background-color: #007aff;
+  background-color: #009EC2;
 }
 .swiper-pagination.swiper-pagination-progress.bg-blue {
   background-color: rgba(0, 122, 255, 0.25);
@@ -1299,7 +1299,7 @@ label.label-radio.theme-blue input[type="radio"]:checked ~ .item-inner {
 .floating-button.theme-blue,
 .speed-dial-buttons a.theme-blue {
   color: #fff;
-  background: #007aff;
+  background: #009EC2;
 }
 html:not(.watch-active-state) .theme-blue .floating-button:active,
 html:not(.watch-active-state) .theme-blue .speed-dial-buttons a:active,
@@ -1319,14 +1319,14 @@ html:not(.watch-active-state) .speed-dial-buttons a.theme-blue:active,
 }
 .theme-blue .range-slider input[type="range"]::-webkit-slider-thumb:before,
 .range-slider.theme-blue input[type="range"]::-webkit-slider-thumb:before {
-  background-color: #007aff;
+  background-color: #009EC2;
 }
 .theme-blue .range-slider input[type="range"]::-ms-fill-lower,
 .range-slider.theme-blue input[type="range"]::-ms-fill-lower {
-  background-color: #007aff;
+  background-color: #009EC2;
 }
 .badge.theme-blue {
-  background-color: #007aff;
+  background-color: #009EC2;
   color: #fff;
 }
 .theme-green .button:not(.button-fill) {
