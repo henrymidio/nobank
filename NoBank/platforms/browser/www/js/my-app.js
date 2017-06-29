@@ -21,7 +21,7 @@ usuario = new User();
 myApp.onPageInit('index', function (page) {
             
             var myChart = renderChart([12, 34, 54, 11, 13, 6, 10], 'myChart')  
-
+            usuario.getPortfolioAmount();
             usuario.getPortfolioPrices();     
 
             $('.periodo').on('click', function(){
