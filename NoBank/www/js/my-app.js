@@ -36,8 +36,8 @@ myApp.onPageInit('index', function (page) {
               mainView.router.loadPage('ativo.html');
             })
 
-            //Evento de abertura da página de detalhes da ação
-            $('#icon-right').on('click', function(){
+            //Evento de atualização
+            $('#refresh').on('click', function(){
 
               if($('#ativa-tab-montante').hasClass("active")){
                 $('#tabela-montante tbody').empty();
