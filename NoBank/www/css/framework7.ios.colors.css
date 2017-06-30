@@ -2354,21 +2354,21 @@ html:not(.watch-active-state) .speed-dial-buttons a.bg-pink:active,
   color: #fff;
 }
 .color-blue {
-  color: #007aff;
+  color: #009EC2;
 }
 .list-block .item-link.list-button.color-blue,
 .list-button.color-blue,
 .tabbar a.active.color-blue,
 a.color-blue {
-  color: #007aff;
+  color: #009EC2;
 }
 .label-switch input[type="checkbox"]:checked + .checkbox.color-blue,
 .label-switch.color-blue input[type="checkbox"]:checked + .checkbox {
-  background-color: #007aff;
+  background-color: #009EC2;
 }
 .color-blue.button:not(.button-fill),
 .color-blue.buttons-row .button {
-  border-color: #007aff;
+  border-color: #009EC2;
 }
 html:not(.watch-active-state) .color-blue.button:not(.button-fill):active,
 html:not(.watch-active-state) .color-blue.buttons-row .button:active,
@@ -2378,16 +2378,16 @@ html:not(.watch-active-state) .color-blue.buttons-row .button:active,
 }
 .color-blue.button:not(.button-fill).active,
 .color-blue.buttons-row .button.active {
-  background-color: #007aff;
+  background-color: #009EC2;
   color: #fff;
 }
 .button.button-fill.color-blue {
-  background: #007aff;
+  background: #009EC2;
   color: #fff;
 }
 .progressbar.color-blue span,
 .progressbar.bg-blue span {
-  background-color: #007aff;
+  background-color: #009EC2;
 }
 .progressbar-infinite.color-blue:before,
 .progressbar-infinite.bg-blue:before {

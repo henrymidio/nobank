@@ -67,7 +67,7 @@ function User() {
         }
 	}
 
-	this.getPortfolioPrices = function() {
+	this.renderPortfolioPrices = function() {
 		var portfolio = JSON.parse(localStorage.getItem("portfolioStocks"));
 		if(!$.trim($("#tabela-valores tbody").html())=='') {
 			return false;
@@ -98,7 +98,7 @@ function User() {
 		}		
 	}
 
-	this.getPortfolioAmount = function() {
+	this.renderPortfolioAmount = function() {
 		var portfolio = JSON.parse(localStorage.getItem("portfolioStocks"));
 		
 		for (var index in portfolio) {

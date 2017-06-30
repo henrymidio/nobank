@@ -91,6 +91,25 @@ function animateNumbers(numero, elemento){
         target.text(floored_number);
       }
     },
-    600
+    1000
   );
+}
+
+function renderNDX(myChart, arrChart) {
+  $.getJSON("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=ndx&interval=60min&apikey=VFAVA1B9R16KT761", function success(result) {
+  $.each(result, function( a, b ) {
+    var count = 0;
+    $.each(b, function( c, d ) {
+        if(d['4. close']) {
+          arrChart.push(d['4. close']);
+          count++;
+        }
+          if(count > 6) {
+            myChart = renderChart(arrChart.reverse(), 'myChart');
+            animateNumbers(arrChart[6], $('.current-money'));
+            return false
+          }
+      });
+    });
+  });
 }

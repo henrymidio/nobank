@@ -1,3 +1,6 @@
+//Verifica se o pregão está aberto para setar o theme layout
+isMarketOpen();
+
 // Initialize your app
 var myApp = new Framework7({
     
@@ -12,44 +15,33 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
-//isUserLogged();
-//verifica se o pregão está aberto para setar o theme layout
-isMarketOpen();
-
 usuario = new User();
 
 myApp.onPageInit('index', function (page) {
+  var myChart;
+  var arrChart = [];
+  renderNDX(myChart, arrChart);
 
-            usuario.getPortfolioAmount();
-            
-            var myChart = renderChart([12, 34, 54, 11, 13, 6, 10], 'myChart');
-            $('.periodo').on('click', function(){
-              $('.periodo').removeClass('periodo-selecionado');
-              $(this).addClass('periodo-selecionado');
-              myChart.destroy()
-              renderChart(gerarRandom(), 'myChart')
-              animateNumbers(43852.57, $('.current-money'));
-            });    
+  usuario.renderPortfolioAmount();
+              
+  //Evento de abertura da página de detalhes da ação
+  $$('.stock-row').on('click', function(){
+    mainView.router.loadPage('ativo.html');
+  })
 
-            //Evento de abertura da página de detalhes da ação
-            $$('.stock-row').on('click', function(){
-              mainView.router.loadPage('ativo.html');
-            })
+  //Evento de atualização
+  $('#refresh').on('click', function(){
+    renderNDX(myChart, arrChart);
 
-            //Evento de abertura da página de detalhes da ação
-            $('#icon-right').on('click', function(){
-
-              if($('#ativa-tab-montante').hasClass("active")){
-                $('#tabela-montante tbody').empty();
-                usuario.getPortfolioAmount();
-              }
-              if($('#ativa-tab-valores').hasClass("active")){
-                $('#tabela-valores tbody').empty();
-                usuario.getPortfolioPrices();
-              }
-            })
-
-            animateNumbers(43852.57, $('.current-money'));
+    if($('#ativa-tab-montante').hasClass("active")){
+      $('#tabela-montante tbody').empty();
+      usuario.renderPortfolioAmount();
+    }
+    if($('#ativa-tab-valores').hasClass("active")){
+      $('#tabela-valores tbody').empty();
+      usuario.renderPortfolioPrices();
+    }
+  })
 
             //Eventos de click na tabbar
             $('.tab-link').on('click', function(event){
@@ -65,10 +57,6 @@ myApp.onPageInit('index', function (page) {
               $(this).addClass('active')
               changeTabEffect('#carteira')
               $('.navbar-titulo').html('');
-              setTimeout(function(){ 
-                animateNumbers(43852.57, $('.current-money'))
-                myChart = renderChart([12, 34, 54, 11, 13, 6, 10], 'myChart')
-              }, 400);
               
             })
 
@@ -107,7 +95,7 @@ myApp.onPageInit('index', function (page) {
 
             //Tabelas montante e preços
             $$('#ativa-tab-valores').on('click', function(){
-              usuario.getPortfolioPrices();  
+              usuario.renderPortfolioPrices();  
               $(this).toggleClass('active');
               $('#ativa-tab-montante').toggleClass('active');
               $('#tabela-valores').toggleClass('none');
@@ -126,7 +114,6 @@ myApp.onPageInit('index', function (page) {
                 $$('#icon-right').text('refresh');
                 $(show).slideToggle('fast');
                 $(show).addClass('active');
-                myChart.destroy()
               }
               $('div.active').animate(
                 {
