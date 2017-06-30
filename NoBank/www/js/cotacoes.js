@@ -37,12 +37,11 @@ function Cotacoes() {
                   	arrChart.push(d['4. close']);
                     count++;
 				  }
-                  if(count > 6) {return false}
+                  if(count > 13) {
+                  	return false;
+                  }
               });
-              
             });
-            localStorage.setItem("ndx", arrChart);
-            
 		});
 		
 	}

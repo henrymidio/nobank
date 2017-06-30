@@ -7,7 +7,7 @@ function User() {
 		{
 			'empresa': 'Starbucks',
 			'simbolo': 'SBUX',
-			'quantidade': 3
+			'quantidade': 1
 		},
 		{
 			'empresa': 'Tesla',
@@ -17,7 +17,7 @@ function User() {
 		{
 			'empresa': 'Facebook',
 			'simbolo': 'FB',
-			'quantidade': 12
+			'quantidade': 1
 		},
 		{
 			'empresa': 'Apple',
@@ -32,7 +32,7 @@ function User() {
 		{
 			'empresa': 'Staples',
 			'simbolo': 'SPLS',
-			'quantidade': 100
+			'quantidade': 1
 		}
 	]
 	localStorage.setItem("portfolioStocks", JSON.stringify(portfolio));
@@ -50,10 +50,11 @@ function User() {
 	}
 
 	this.getCapitalInvestido = function() {
+		return localStorage.getItem("capitalInvestido");
 	}
 
 	this.getCapitaldisponivel = function() {
-		localStorage.getItem("capitalDisponivel")
+		return localStorage.getItem("capitalDisponivel");
 	}
 	this.setCapitalDisponivel = function() {
 	}
@@ -100,6 +101,7 @@ function User() {
 
 	this.renderPortfolioAmount = function() {
 		var portfolio = JSON.parse(localStorage.getItem("portfolioStocks"));
+		var capitalInvestido = 0;
 		
 		for (var index in portfolio) {
 			var line = "<tr class="+portfolio[index]['simbolo']+">"
@@ -117,7 +119,10 @@ function User() {
         	  var indexP = portfolio.map(function(o) { return o.simbolo; }).indexOf(simbolo);
         	  var montante = (parseFloat(preco) * parseInt(portfolio[indexP]['quantidade']));
         	  var variacao = result['Realtime Global Securities Quote']['09. Price Change Percentage'];
-        	  
+
+        	  //Já aproveita e calcula o capital investido
+        	  capitalInvestido = capitalInvestido + montante;
+        	  animateNumbers(capitalInvestido, $('.current-money'));
 
         	  //Verificação da cor das variações
         	  var color = getVarColor(variacao);

@@ -20,7 +20,7 @@ usuario = new User();
 myApp.onPageInit('index', function (page) {
   var myChart;
   var arrChart = [];
-  renderNDX(myChart, arrChart);
+  renderNDXChart(myChart, arrChart, '1D');
 
   usuario.renderPortfolioAmount();
               
@@ -29,9 +29,20 @@ myApp.onPageInit('index', function (page) {
     mainView.router.loadPage('ativo.html');
   })
 
+  //Evento de troca de período do índice ndx
+  /*
+  $('.periodo').on('click', function(){
+    $('.periodo').removeClass('periodo-selecionado');
+    $(this).addClass('periodo-selecionado');
+    var arrChart = [];
+    renderNDXChart(myChart, arrChart, '5D');
+  });
+*/
+
   //Evento de atualização
   $('#refresh').on('click', function(){
-    renderNDX(myChart, arrChart);
+    arrChart = [];
+    renderNDXChart(myChart, arrChart, '1D');
 
     if($('#ativa-tab-montante').hasClass("active")){
       $('#tabela-montante tbody').empty();
@@ -143,7 +154,7 @@ myApp.onPageInit('ativo', function (page) {
   //Aguarda 500ms após a renderização da página para renderizar o gráfico
   var my2Chart;
   setTimeout(function() { 
-    my2Chart = renderChart(gerarRandom(), 'ativoChart')
+    my2Chart = renderChart(gerarRandom(), 'ativoChart', '')
     animateNumbers(957.37, $('#share-value'))
   }, 500);
 
@@ -151,7 +162,7 @@ myApp.onPageInit('ativo', function (page) {
     $('.periodo').removeClass('periodo-selecionado');
     $(this).addClass('periodo-selecionado');
     my2Chart.destroy()
-    renderChart(gerarRandom(), 'ativoChart')
+    renderChart(gerarRandom(), 'ativoChart', '')
   });
 });
 
