@@ -92,6 +92,7 @@ function animateNumbers(numero, elemento){
   //Animação da contagem de números
   var decimal_places = 2;
   var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
+
   elemento.animateNumber(
     {
       number: numero * decimal_factor,
@@ -105,10 +106,13 @@ function animateNumbers(numero, elemento){
           floored_number = floored_number.toFixed(decimal_places);
 
           // replace '.' separator with ','
-          floored_number = floored_number.toString().replace('.', ',');
+          //floored_number = floored_number.toString().replace('.', ',');
         }
-
-        target.text(floored_number);
+        //console.log(target.text())
+        if(floored_number > parseFloat(target.text())) {
+          //console.log(floored_number)
+          target.text(floored_number);
+      }
       }
     },
     500

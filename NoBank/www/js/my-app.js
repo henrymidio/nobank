@@ -29,15 +29,6 @@ myApp.onPageInit('index', function (page) {
     mainView.router.loadPage('ativo.html');
   })
 
-  //Evento de troca de período do índice ndx
-  /*
-  $('.periodo').on('click', function(){
-    $('.periodo').removeClass('periodo-selecionado');
-    $(this).addClass('periodo-selecionado');
-    var arrChart = [];
-    renderNDXChart(myChart, arrChart, '5D');
-  });
-*/
 
   //Evento de atualização
   $('#refresh').on('click', function(){
@@ -63,7 +54,6 @@ myApp.onPageInit('index', function (page) {
               if($(this).hasClass("active")){
                 return;
               }
-              $('#current-money').html('00,00')
               $('.tab-link').removeClass('active')
               $(this).addClass('active')
               changeTabEffect('#carteira')
