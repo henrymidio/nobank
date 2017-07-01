@@ -33,7 +33,7 @@ myApp.onPageInit('index', function (page) {
   if(color == 'blue') {
     $('.sinal').text('+');
     $('.cap-diff-per').text(percentageV + '%');
-    animateNumbers(capDiffAmount, $('.cap-diff-amount'), 3000)
+    animateNumbers(capDiffAmount, $('.cap-diff-amount'));
   } else {
     $('.sinal').text('-');
     $('.cap-diff-per').text(percentageV + '%');

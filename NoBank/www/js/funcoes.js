@@ -94,7 +94,7 @@ function renderChart(dados, elmID, titulo) {
 }
 
 //Exibe número de forma animada
-function animateNumbers(numero, elemento, delay = 500){
+function animateNumbers(numero, elemento){
   //Animação da contagem de números
   var decimal_places = 2;
   var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
@@ -121,7 +121,7 @@ function animateNumbers(numero, elemento, delay = 500){
         }
       }
     },
-    delay
+    500
   );
 }
 
