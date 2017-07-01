@@ -18,19 +18,25 @@ var mainView = myApp.addView('.view-main', {
 usuario = new User();
 
 myApp.onPageInit('index', function (page) {
+  //Renderiza o gráfico do índice Nasdaq
   var myChart;
   var arrChart = [];
   renderNDXChart(myChart, arrChart, '1D');
 
+  //Calcula e exibe a variação total de capital
   $('.cap-diff-amount').text('00.00')
-  var capDiffAmount = (usuario.getCapitalInvestido() - usuario.getCapitalInicial());
+  var capInv = usuario.getCapitalInvestido();
+  var capInit = usuario.getCapitalInicial();
+  var capDiffAmount = (capInv - capInit);
+  var percentageV = getVariationPercentage(capInit, capInv);
   var color = getPerColor(capDiffAmount.toString());
-  
   if(color == 'blue') {
     $('.sinal').text('+');
-    animateNumbers(capDiffAmount, $('.cap-diff-amount'))
+    $('.cap-diff-per').text(percentageV + '%');
+    animateNumbers(capDiffAmount, $('.cap-diff-amount'), 3000)
   } else {
     $('.sinal').text('-');
+    $('.cap-diff-per').text(percentageV + '%');
     $('.cap-diff-amount').text(capDiffAmount.toString().substring(1))
   }
 
@@ -58,86 +64,72 @@ myApp.onPageInit('index', function (page) {
     }
   })
 
-            //Eventos de click na tabbar
-            $('.tab-link').on('click', function(event){
-              return false;
-            });
+  //Eventos de click na tabbar
+  $('.tab-link').on('click', function(event){
+    return false;
+  });
 
-            $('#tab-carteira').on('click', function(){
-              if($(this).hasClass("active")){
-                return;
-              }
-              $('.tab-link').removeClass('active')
-              $(this).addClass('active')
-              changeTabEffect('#carteira')
-              $('.navbar-titulo').html('');
-              
-            })
+  $('#tab-carteira').on('click', function(){
+    if($(this).hasClass("active")){
+      return;
+    }
+    $('.tab-link').removeClass('active')
+    $(this).addClass('active')
+    changeTabEffect('#carteira')
+    $('.navbar-titulo').html('');
+    
+  })
 
-            $('#tab-cotacoes').on('click', function(event){
-              if($(this).hasClass("active")){
-                return;
-              }
-              $('.tab-link').removeClass('active')
-              $(this).addClass('active')
-              changeTabEffect('#cotacoes')
-              $('.navbar-titulo').html('$4203.56');
-              $('.navbar-titulo').css('left', '0px');
-            });
+  $('#tab-cotacoes').on('click', function(event){
+    if($(this).hasClass("active")){
+      return;
+    }
+    $('.tab-link').removeClass('active')
+    $(this).addClass('active')
+    changeTabEffect('#cotacoes')
+    $('.navbar-titulo').html('$4203.56');
+    $('.navbar-titulo').css('left', '0px');
+  });
 
-            $('#tab-transacoes').on('click', function(event){
-              if($(this).hasClass("active")){
-                return;
-              }
-              $('.tab-link').removeClass('active')
-              $(this).addClass('active')
-              changeTabEffect('#transacoes')
-              $$('.navbar-titulo').html('$4203.56');
-              $('.navbar-titulo').css('left', '0px');
-            });
+  $('#tab-transacoes').on('click', function(event){
+    if($(this).hasClass("active")){
+      return;
+    }
+    $('.tab-link').removeClass('active')
+    $(this).addClass('active')
+    changeTabEffect('#transacoes')
+    $$('.navbar-titulo').html('$4203.56');
+    $('.navbar-titulo').css('left', '0px');
+  });
 
-            $$('#tab-noticias').on('click', function(){
-              if($(this).hasClass("active")){
-                return;
-              }
-                $('.tab-link').removeClass('active')
-              $(this).addClass('active')
-              changeTabEffect('#noticias')
-              $('.navbar-titulo').html('$4203.56');
-              $('.navbar-titulo').css('left', '0px');
-            })
+  $$('#tab-noticias').on('click', function(){
+    if($(this).hasClass("active")){
+      return;
+    }
+      $('.tab-link').removeClass('active')
+    $(this).addClass('active')
+    changeTabEffect('#noticias')
+    $('.navbar-titulo').html('$4203.56');
+    $('.navbar-titulo').css('left', '0px');
+  })
 
-            //Tabelas montante e preços
-            $$('#ativa-tab-valores').on('click', function(){
-              usuario.renderPortfolioPrices();  
-              $(this).toggleClass('active');
-              $('#ativa-tab-montante').toggleClass('active');
-              $('#tabela-valores').toggleClass('none');
-              $('#tabela-montante').toggleClass('none');
-            })
-            $$('#ativa-tab-montante').on('click', function(){
-              $(this).toggleClass('active');
-              $('#ativa-tab-valores').toggleClass('active');
-              $('#tabela-valores').toggleClass('none');
-              $('#tabela-montante').toggleClass('none');
-            })
+  //Tabelas montante e preços
+  $$('#ativa-tab-valores').on('click', function(){
+    usuario.renderPortfolioPrices();  
+    $(this).toggleClass('active');
+    $('#ativa-tab-montante').toggleClass('active');
+    $('#tabela-valores').toggleClass('none');
+    $('#tabela-montante').toggleClass('none');
+  })
+  $$('#ativa-tab-montante').on('click', function(){
+    $(this).toggleClass('active');
+    $('#ativa-tab-valores').toggleClass('active');
+    $('#tabela-valores').toggleClass('none');
+    $('#tabela-montante').toggleClass('none');
+  })
 
-            function changeTabEffect(show) {
-              function callb() {
-                $('div.active').removeClass();
-                $$('#icon-right').text('refresh');
-                $(show).slideToggle('fast');
-                $(show).addClass('active');
-              }
-              $('div.active').animate(
-                {
-                  width: 'toggle'
-                }, 
-                200, 
-                callb
-              );
-            }
-        }).trigger();
+  
+}).trigger();
 
 myApp.onPageInit('a-mercado', function (page) {
   $('#ordena').on('click', function(){

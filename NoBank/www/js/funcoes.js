@@ -94,7 +94,7 @@ function renderChart(dados, elmID, titulo) {
 }
 
 //Exibe número de forma animada
-function animateNumbers(numero, elemento){
+function animateNumbers(numero, elemento, delay = 500){
   //Animação da contagem de números
   var decimal_places = 2;
   var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
@@ -118,10 +118,10 @@ function animateNumbers(numero, elemento){
         if(floored_number > parseFloat(target.text())) {
           //console.log(floored_number)
           target.text(floored_number);
-      }
+        }
       }
     },
-    500
+    delay
   );
 }
 
@@ -170,4 +170,20 @@ function getPerColor(sinal) {
         } else {
           return "blue";
         }
+  }
+
+function changeTabEffect(show) {
+    function callb() {
+      $('div.active').removeClass();
+      $$('#icon-right').text('refresh');
+      $(show).slideToggle('fast');
+      $(show).addClass('active');
+    }
+    $('div.active').animate(
+      {
+        width: 'toggle'
+      }, 
+      200, 
+      callb
+    );
   }
