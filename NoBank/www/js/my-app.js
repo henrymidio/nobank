@@ -22,6 +22,19 @@ myApp.onPageInit('index', function (page) {
   var arrChart = [];
   renderNDXChart(myChart, arrChart, '1D');
 
+  $('.cap-diff-amount').text('00.00')
+  var capDiffAmount = (usuario.getCapitalInvestido() - usuario.getCapitalInicial());
+  var color = getPerColor(capDiffAmount.toString());
+  
+  if(color == 'blue') {
+    $('.sinal').text('+');
+    animateNumbers(capDiffAmount, $('.cap-diff-amount'))
+  } else {
+    $('.sinal').text('-');
+    $('.cap-diff-amount').text(capDiffAmount.toString().substring(1))
+  }
+
+
   usuario.renderPortfolioAmount();
               
   //Evento de abertura da página de detalhes da ação

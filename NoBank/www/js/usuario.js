@@ -7,32 +7,38 @@ function User() {
 		{
 			'empresa': 'Starbucks',
 			'simbolo': 'SBUX',
-			'quantidade': 1
+			'quantidade': 2,
+			'pago': 50.00
 		},
 		{
 			'empresa': 'Tesla',
 			'simbolo': 'TSLA',
-			'quantidade': 2
+			'quantidade': 2,
+			'pago': 50.00
 		},
 		{
 			'empresa': 'Facebook',
 			'simbolo': 'FB',
-			'quantidade': 1
+			'quantidade': 2,
+			'pago': 50.00
 		},
 		{
 			'empresa': 'Apple',
 			'simbolo': 'AAPL',
-			'quantidade': 9
+			'quantidade': 2,
+			'pago': 50.00
 		},
 		{
 			'empresa': 'Alphabet Inc.',
 			'simbolo': 'GOOGL',
-			'quantidade': 1
+			'quantidade': 2,
+			'pago': 50.00
 		},
 		{
 			'empresa': 'Staples',
 			'simbolo': 'SPLS',
-			'quantidade': 1
+			'quantidade': 2,
+			'pago': 50.00
 		}
 	]
 	localStorage.setItem("portfolioStocks", JSON.stringify(portfolio));
@@ -49,6 +55,15 @@ function User() {
 	this.setEmail = function() {
 	}
 
+	this.getCapitalInicial = function() {
+		var portfolio = JSON.parse(localStorage.getItem("portfolioStocks"));
+		var capitalInicial = 0;
+		for (var index in portfolio) {
+			capitalInicial = capitalInicial + (portfolio[index]['pago'] * 2);
+		}
+		return capitalInicial;
+	}
+
 	this.getCapitalInvestido = function() {
 		return localStorage.getItem("capitalInvestido");
 	}
@@ -59,15 +74,7 @@ function User() {
 	this.setCapitalDisponivel = function() {
 	}
 
-	function getVarColor(sinal) {
-    	  var c = sinal.charAt(0);
-    	  if(c == "-") {
-    	  	return "red";
-    	  } else {
-    	  	return "blue";
-        }
-	}
-
+	
 	this.renderPortfolioPrices = function() {
 		var portfolio = JSON.parse(localStorage.getItem("portfolioStocks"));
 		if(!$.trim($("#tabela-valores tbody").html())=='') {
@@ -90,7 +97,7 @@ function User() {
         	  var simbolo = result['Realtime Global Securities Quote']['01. Symbol'];
 
         	  //Verificação da cor das variações
-        	  var color = getVarColor(variacao);
+        	  var color = getPerColor(variacao);
         	  
         	  $('#tabela-valores tbody tr.'+simbolo+' .acao-var').html(variacao).addClass("color-"+color);
         	  $('#tabela-valores tbody tr.'+simbolo+' .acao-preco').html(parseFloat(preco).toFixed(2)).addClass('stock-box-'+color);
@@ -118,14 +125,15 @@ function User() {
         	  var preco = result['Realtime Global Securities Quote']['03. Latest Price'];
         	  var indexP = portfolio.map(function(o) { return o.simbolo; }).indexOf(simbolo);
         	  var montante = (parseFloat(preco) * parseInt(portfolio[indexP]['quantidade']));
-        	  var variacao = result['Realtime Global Securities Quote']['09. Price Change Percentage'];
+        	  var variacao = getVariationPercentage(parseFloat(portfolio[indexP]['pago']), parseFloat(preco));
 
         	  //Já aproveita e calcula o capital investido
         	  capitalInvestido = capitalInvestido + montante;
         	  animateNumbers(capitalInvestido, $('.current-money'));
+        	  localStorage.setItem("capitalInvestido", capitalInvestido);
 
         	  //Verificação da cor das variações
-        	  var color = getVarColor(variacao);
+        	  var color = getPerColor(variacao);
 
         	  $('#tabela-montante tbody tr.'+simbolo+' .acao-var').html(variacao).addClass("color-"+color);
         	  $('#tabela-montante tbody tr.'+simbolo+' .acao-preco').html(montante.toFixed(2)).addClass('stock-box-'+color);

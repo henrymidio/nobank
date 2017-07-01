@@ -2,15 +2,21 @@
 function isMarketOpen() {
 
   var dt = new Date();
+
+  var dtDay = dt.getDay();
+
+  if(dtDay == 0 || dtDay == 7) {
+    return false;
+  }
  
   var startTime = '10:30:00';
   var endTime = '17:00:00';
 
   var s =  startTime.split(':');
-  var dt1 = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(), parseInt(s[0]), parseInt(s[1]), parseInt(s[2]));
+  var dt1 = new Date(dt.getFullYear(), dt.getMonth(), dtDay, parseInt(s[0]), parseInt(s[1]), parseInt(s[2]));
   
   var e =  endTime.split(':');
-  var dt2 = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(),parseInt(e[0]), parseInt(e[1]), parseInt(e[2]));
+  var dt2 = new Date(dt.getFullYear(), dt.getMonth(), dtDay,parseInt(e[0]), parseInt(e[1]), parseInt(e[2]));
 
   if(dt >= dt1 && dt <= dt2) {
     $('body').addClass('layout-white').removeClass('layout-dark');
@@ -120,16 +126,16 @@ function animateNumbers(numero, elemento){
 }
 
 function renderNDXChart(myChart, arrChart, periodo) {
-  var limite = 55;
+  var limite = 27;
   var time_series = 'TIME_SERIES_INTRADAY';
   switch(periodo) {
     case '1D':
-        limite = 55;
+        limite = 27;
         time_series = 'TIME_SERIES_INTRADAY';
         break;
   }
 
-  $.getJSON("https://www.alphavantage.co/query?function="+time_series+"&symbol=ndx&interval=5min&apikey=VFAVA1B9R16KT761", function success(result) {
+  $.getJSON("https://www.alphavantage.co/query?function="+time_series+"&symbol=ndx&interval=15min&apikey=VFAVA1B9R16KT761", function success(result) {
   $.each(result, function( a, b ) {
     var count = 0;
     $.each(b, function( c, d ) {
@@ -145,3 +151,23 @@ function renderNDXChart(myChart, arrChart, periodo) {
     });
   });
 }
+
+function getVariationPercentage(firstPrice, lastPrice) {
+  if(firstPrice > lastPrice) {
+   var diff = lastPrice - firstPrice;
+    var p = (diff/lastPrice) * 100;
+    return p.toFixed(2);
+  }
+  var diff = lastPrice - firstPrice;
+  var p = (diff/firstPrice) * 100;
+  return p.toFixed(2);
+}
+
+function getPerColor(sinal) {
+        var c = sinal.charAt(0);
+        if(c == "-") {
+          return "red";
+        } else {
+          return "blue";
+        }
+  }
