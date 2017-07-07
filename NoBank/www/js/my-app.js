@@ -1,5 +1,3 @@
-//Verifica se o pregão está aberto para setar o theme layout
-isMarketOpen();
 
 // Initialize your app
 var myApp = new Framework7({
@@ -14,6 +12,9 @@ var mainView = myApp.addView('.view-main', {
     // Because we use fixed-through navbar we can enable dynamic navbar
     dynamicNavbar: true
 });
+
+//Verifica se o pregão está aberto para setar o theme layout
+isMarketOpen();
 
 usuario = new User();
 
@@ -42,12 +43,6 @@ myApp.onPageInit('index', function (page) {
 
 
   usuario.renderPortfolioAmount();
-              
-  //Evento de abertura da página de detalhes da ação
-  $$('.stock-row').on('click', function(){
-    mainView.router.loadPage('ativo.html');
-  })
-
 
   //Evento de atualização
   $('#refresh').on('click', function(){
@@ -84,11 +79,39 @@ myApp.onPageInit('index', function (page) {
     if($(this).hasClass("active")){
       return;
     }
+//$(".tabela-cotacoes tbody tr.ADBE td:nth-child(2)").html('hbj');
+    var cotadas = [];
+    $(".stock-symbol").each(function() {
+      var sy = $(this).html();
+        cotadas.push(sy);
+        $(this).parent().parent().addClass(sy);
+    });
+    renderCotacoes(cotadas);
+    
     $('.tab-link').removeClass('active')
     $(this).addClass('active')
     changeTabEffect('#cotacoes')
     $('.navbar-titulo').html('$4203.56');
     $('.navbar-titulo').css('left', '0px');
+
+    function renderCotacoes(acoes) {
+      for (var acao in acoes) {
+
+          $.getJSON("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+acoes[acao]+"&apikey=VFAVA1B9R16KT761", function success(result, status) {
+            
+            var preco = result['Realtime Global Securities Quote']['03. Latest Price'];
+            var variacao = result['Realtime Global Securities Quote']['09. Price Change Percentage'];
+            var simbolo = result['Realtime Global Securities Quote']['01. Symbol'];
+            
+            //Verificação da cor das variações
+            var color = getPerColor(variacao);
+            
+            $(".tabela-cotacoes tbody tr."+simbolo+" td:nth-child(2)").html(variacao).addClass("color-"+color);
+            $(".tabela-cotacoes tbody tr."+simbolo+" td:nth-child(3) span").html(parseFloat(preco).toFixed(2)).addClass('stock-box-'+color);
+            
+          })
+    } 
+    }
   });
 
   $('#tab-transacoes').on('click', function(event){
@@ -126,6 +149,11 @@ myApp.onPageInit('index', function (page) {
     $('#ativa-tab-valores').toggleClass('active');
     $('#tabela-valores').toggleClass('none');
     $('#tabela-montante').toggleClass('none');
+  })
+
+  //Evento de abertura da página de detalhes da ação
+  $$('.stock-row').on('click', function(){
+    mainView.router.loadPage('ativo.html');
   })
 
   

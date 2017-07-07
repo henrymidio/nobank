@@ -6,6 +6,7 @@ function isMarketOpen() {
   var dtDay = dt.getDay();
 
   if(dtDay == 0 || dtDay == 7) {
+    $('body').addClass('layout-dark').removeClass('layout-white');
     return false;
   }
  
@@ -13,10 +14,10 @@ function isMarketOpen() {
   var endTime = '17:00:00';
 
   var s =  startTime.split(':');
-  var dt1 = new Date(dt.getFullYear(), dt.getMonth(), dtDay, parseInt(s[0]), parseInt(s[1]), parseInt(s[2]));
+  var dt1 = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(), parseInt(s[0]), parseInt(s[1]), parseInt(s[2]));
   
   var e =  endTime.split(':');
-  var dt2 = new Date(dt.getFullYear(), dt.getMonth(), dtDay,parseInt(e[0]), parseInt(e[1]), parseInt(e[2]));
+  var dt2 = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate(),parseInt(e[0]), parseInt(e[1]), parseInt(e[2]));
 
   if(dt >= dt1 && dt <= dt2) {
     $('body').addClass('layout-white').removeClass('layout-dark');

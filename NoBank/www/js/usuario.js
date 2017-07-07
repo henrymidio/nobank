@@ -33,12 +33,6 @@ function User() {
 			'simbolo': 'GOOGL',
 			'quantidade': 2,
 			'pago': 50.00
-		},
-		{
-			'empresa': 'Staples',
-			'simbolo': 'SPLS',
-			'quantidade': 2,
-			'pago': 50.00
 		}
 	]
 	localStorage.setItem("portfolioStocks", JSON.stringify(portfolio));
@@ -101,7 +95,7 @@ function User() {
         	  
         	  $('#tabela-valores tbody tr.'+simbolo+' .acao-var').html(variacao).addClass("color-"+color);
         	  $('#tabela-valores tbody tr.'+simbolo+' .acao-preco').html(parseFloat(preco).toFixed(2)).addClass('stock-box-'+color);
-        	  console.log(status);
+        	  //console.log(status);
         	})
 		}		
 	}
