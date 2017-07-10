@@ -1,3 +1,5 @@
+//Verifica se o pregão está aberto para setar o theme layout
+isMarketOpen();
 
 // Initialize your app
 var myApp = new Framework7({
@@ -13,8 +15,6 @@ var mainView = myApp.addView('.view-main', {
     dynamicNavbar: true
 });
 
-//Verifica se o pregão está aberto para setar o theme layout
-isMarketOpen();
 
 usuario = new User();
 
@@ -49,6 +49,17 @@ myApp.onPageInit('index', function (page) {
     arrChart = [];
     renderNDXChart(myChart, arrChart, '1D');
 
+    if($('#tab-cotacoes').hasClass('active')) {
+      var cotadas = [];
+      $(".stock-symbol").each(function() {
+        var sy = $(this).html();
+          cotadas.push(sy);
+          $(this).parent().parent().addClass(sy);
+      });
+      renderHeaderIndex();
+      renderCotacoes(cotadas);
+    }
+
     if($('#ativa-tab-montante').hasClass("active")){
       $('#tabela-montante tbody').empty();
       usuario.renderPortfolioAmount();
@@ -79,7 +90,7 @@ myApp.onPageInit('index', function (page) {
     if($(this).hasClass("active")){
       return;
     }
-//$(".tabela-cotacoes tbody tr.ADBE td:nth-child(2)").html('hbj');
+    renderHeaderIndex();
     var cotadas = [];
     $(".stock-symbol").each(function() {
       var sy = $(this).html();
@@ -91,27 +102,8 @@ myApp.onPageInit('index', function (page) {
     $('.tab-link').removeClass('active')
     $(this).addClass('active')
     changeTabEffect('#cotacoes')
-    $('.navbar-titulo').html('$4203.56');
-    $('.navbar-titulo').css('left', '0px');
-
-    function renderCotacoes(acoes) {
-      for (var acao in acoes) {
-
-          $.getJSON("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+acoes[acao]+"&apikey=VFAVA1B9R16KT761", function success(result, status) {
-            
-            var preco = result['Realtime Global Securities Quote']['03. Latest Price'];
-            var variacao = result['Realtime Global Securities Quote']['09. Price Change Percentage'];
-            var simbolo = result['Realtime Global Securities Quote']['01. Symbol'];
-            
-            //Verificação da cor das variações
-            var color = getPerColor(variacao);
-            
-            $(".tabela-cotacoes tbody tr."+simbolo+" td:nth-child(2)").html(variacao).addClass("color-"+color);
-            $(".tabela-cotacoes tbody tr."+simbolo+" td:nth-child(3) span").html(parseFloat(preco).toFixed(2)).addClass('stock-box-'+color);
-            
-          })
-    } 
-    }
+    $('.navbar-titulo').html('$'+usuario.getCapitalInvestido());
+    $('.navbar-titulo').css('left', '0px');   
   });
 
   $('#tab-transacoes').on('click', function(event){
@@ -121,7 +113,6 @@ myApp.onPageInit('index', function (page) {
     $('.tab-link').removeClass('active')
     $(this).addClass('active')
     changeTabEffect('#transacoes')
-    $$('.navbar-titulo').html('$4203.56');
     $('.navbar-titulo').css('left', '0px');
   });
 
@@ -132,7 +123,6 @@ myApp.onPageInit('index', function (page) {
       $('.tab-link').removeClass('active')
     $(this).addClass('active')
     changeTabEffect('#noticias')
-    $('.navbar-titulo').html('$4203.56');
     $('.navbar-titulo').css('left', '0px');
   })
 

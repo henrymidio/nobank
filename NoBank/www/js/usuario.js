@@ -8,31 +8,31 @@ function User() {
 			'empresa': 'Starbucks',
 			'simbolo': 'SBUX',
 			'quantidade': 2,
-			'pago': 50.00
+			'pago': 57.60
 		},
 		{
 			'empresa': 'Tesla',
 			'simbolo': 'TSLA',
 			'quantidade': 2,
-			'pago': 50.00
+			'pago': 308.00
 		},
 		{
 			'empresa': 'Facebook',
 			'simbolo': 'FB',
 			'quantidade': 2,
-			'pago': 50.00
+			'pago': 148.00
 		},
 		{
 			'empresa': 'Apple',
 			'simbolo': 'AAPL',
 			'quantidade': 2,
-			'pago': 50.00
+			'pago': 142.50
 		},
 		{
 			'empresa': 'Alphabet Inc.',
 			'simbolo': 'GOOGL',
 			'quantidade': 2,
-			'pago': 50.00
+			'pago': 930.98
 		}
 	]
 	localStorage.setItem("portfolioStocks", JSON.stringify(portfolio));
@@ -106,7 +106,7 @@ function User() {
 		
 		for (var index in portfolio) {
 			var line = "<tr class="+portfolio[index]['simbolo']+">"
-	          + "<td><span class='bold'>"+portfolio[index]['simbolo']+"</span><br><span class='ativo-nome'>"+portfolio[index]['quantidade']+" AÇÕES</span></td>"
+	          + "<td><b>"+portfolio[index]['simbolo']+"</b><br><span class='ativo-nome'>"+portfolio[index]['quantidade']+" AÇÕES</span></td>"
 	          + "<td><span class='acao-var'>...</span></td>"
 	          + "<td class='numeric-cell'><span class='acao-preco'>00.00</span></td>"
 	          + "</tr>";
@@ -119,7 +119,7 @@ function User() {
         	  var preco = result['Realtime Global Securities Quote']['03. Latest Price'];
         	  var indexP = portfolio.map(function(o) { return o.simbolo; }).indexOf(simbolo);
         	  var montante = (parseFloat(preco) * parseInt(portfolio[indexP]['quantidade']));
-        	  var variacao = getVariationPercentage(parseFloat(portfolio[indexP]['pago']), parseFloat(preco));
+        	  var variacao = montante - (parseFloat(portfolio[indexP]['pago']) * parseInt(portfolio[indexP]['quantidade']));
 
         	  //Já aproveita e calcula o capital investido
         	  capitalInvestido = capitalInvestido + montante;
@@ -127,9 +127,10 @@ function User() {
         	  localStorage.setItem("capitalInvestido", capitalInvestido);
 
         	  //Verificação da cor das variações
-        	  var color = getPerColor(variacao);
+        	  variacao = variacao.toFixed(2);
+        	  var color = getPerColor(variacao.toString());
 
-        	  $('#tabela-montante tbody tr.'+simbolo+' .acao-var').html(variacao).addClass("color-"+color);
+        	  $('#tabela-montante tbody tr.'+simbolo+' .acao-var').html('$'+variacao).addClass("color-"+color);
         	  $('#tabela-montante tbody tr.'+simbolo+' .acao-preco').html(montante.toFixed(2)).addClass('stock-box-'+color);
         	   
         	})

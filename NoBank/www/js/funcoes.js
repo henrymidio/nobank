@@ -5,7 +5,7 @@ function isMarketOpen() {
 
   var dtDay = dt.getDay();
 
-  if(dtDay == 0 || dtDay == 7) {
+  if(dtDay == 0 || dtDay == 6) {
     $('body').addClass('layout-dark').removeClass('layout-white');
     return false;
   }
@@ -126,6 +126,19 @@ function animateNumbers(numero, elemento){
   );
 }
 
+function renderHeaderIndex() {
+  //Índice Nasdaq
+  $.getJSON("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=ndx&apikey=VFAVA1B9R16KT761", function success(result) {
+    $('.cotacao-nasdaq').html(result['Realtime Global Securities Quote']['03. Latest Price']);
+    $('.variacao-nasdaq').html(result['Realtime Global Securities Quote']['09. Price Change Percentage'])
+  });
+  //Índice SP500
+  $.getJSON("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=spx&apikey=VFAVA1B9R16KT761", function success(result) {
+    $('.cotacao-sp').html(result['Realtime Global Securities Quote']['03. Latest Price']);
+    $('.variacao-sp').html(result['Realtime Global Securities Quote']['09. Price Change Percentage'])
+  });
+}
+
 function renderNDXChart(myChart, arrChart, periodo) {
   var limite = 27;
   var time_series = 'TIME_SERIES_INTRADAY';
@@ -145,7 +158,8 @@ function renderNDXChart(myChart, arrChart, periodo) {
           count++;
         }
           if(count > limite) {
-            myChart = renderChart(arrChart.reverse(), 'myChart', 'INDEXNASDAQ: NDX - ' + formatDate(new Date()) + ' GMT-4');
+            var lastUpdate = result["Meta Data"]["3. Last Refreshed"];
+            myChart = renderChart(arrChart.reverse(), 'myChart', 'INDEXNASDAQ: NDX - ' + formatDate(new Date(lastUpdate)) + ' GMT-4');
             return false;
           }
       });
@@ -165,6 +179,7 @@ function getVariationPercentage(firstPrice, lastPrice) {
 }
 
 function getPerColor(sinal) {
+  
         var c = sinal.charAt(0);
         if(c == "-") {
           return "red";
@@ -187,4 +202,25 @@ function changeTabEffect(show) {
       200, 
       callb
     );
+  }
+
+   function renderCotacoes(acoes) {
+    $(".tabela-cotacoes tbody tr td:nth-child(2)").html('...');
+    $(".tabela-cotacoes tbody tr td:nth-child(3) span").html('00.00');
+      for (var acao in acoes) {
+
+          $.getJSON("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+acoes[acao]+"&apikey=VFAVA1B9R16KT761", function success(result, status) {
+            
+            var preco = result['Realtime Global Securities Quote']['03. Latest Price'];
+            var variacao = result['Realtime Global Securities Quote']['09. Price Change Percentage'];
+            var simbolo = result['Realtime Global Securities Quote']['01. Symbol'];
+            
+            //Verificação da cor das variações
+            var color = getPerColor(variacao);
+            
+            $(".tabela-cotacoes tbody tr."+simbolo+" td:nth-child(2)").html(variacao).addClass("color-"+color);
+            $(".tabela-cotacoes tbody tr."+simbolo+" td:nth-child(3) span").html(parseFloat(preco).toFixed(2)).addClass('stock-box-'+color);
+            
+          })
+    } 
   }
