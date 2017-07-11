@@ -98,32 +98,38 @@ myApp.onPageInit('index', function (page) {
         $(this).parent().parent().addClass(sy);
     });
     renderCotacoes(cotadas);
-    
+
+    $('.navbar-titulo').html('$'+parseFloat(usuario.getCapitalInvestido()).toFixed(2));
+    $('.navbar-titulo').css('left', '0px');
+
     $('.tab-link').removeClass('active')
     $(this).addClass('active')
-    changeTabEffect('#cotacoes')
-    $('.navbar-titulo').html('$'+usuario.getCapitalInvestido());
-    $('.navbar-titulo').css('left', '0px');   
+    changeTabEffect('#cotacoes')   
+
   });
 
   $('#tab-transacoes').on('click', function(event){
     if($(this).hasClass("active")){
       return;
     }
+    $('.navbar-titulo').html('$'+parseFloat(usuario.getCapitalInvestido()).toFixed(2));
+    $('.navbar-titulo').css('left', '0px');
+
     $('.tab-link').removeClass('active')
     $(this).addClass('active')
     changeTabEffect('#transacoes')
-    $('.navbar-titulo').css('left', '0px');
   });
 
   $$('#tab-noticias').on('click', function(){
     if($(this).hasClass("active")){
       return;
     }
-      $('.tab-link').removeClass('active')
+    $('.navbar-titulo').html('$'+parseFloat(usuario.getCapitalInvestido()).toFixed(2));
+    $('.navbar-titulo').css('left', '0px');
+
+    $('.tab-link').removeClass('active')
     $(this).addClass('active')
     changeTabEffect('#noticias')
-    $('.navbar-titulo').css('left', '0px');
   })
 
   //Tabelas montante e preços
@@ -142,9 +148,16 @@ myApp.onPageInit('index', function (page) {
   })
 
   //Evento de abertura da página de detalhes da ação
-  $$('.stock-row').on('click', function(){
+  $('.stock-row').on('click', function(){
+    var ticker = $(this).find(".stock-symbol").text();
+    localStorage.setItem("ticker", ticker);
     mainView.router.loadPage('ativo.html');
-  })
+  });
+  $('.stock-ticker').on('click', function(){
+        var ticker = $(this).find(".stock-symbol").text();
+        localStorage.setItem("ticker", ticker);
+        mainView.router.loadPage('ativo.html');
+  });
 
   
 }).trigger();
@@ -157,6 +170,7 @@ myApp.onPageInit('a-mercado', function (page) {
       });
   });
 });
+
 
 myApp.onPageInit('ativo', function (page) {
   //Verifica se o mercado está aberto para liberar os botões de compra/venda

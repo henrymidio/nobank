@@ -76,8 +76,8 @@ function User() {
 		}
 		$('#tabela-valores tbody').empty();
 		for (var index in portfolio) {
-			var line = "<tr class="+portfolio[index]['simbolo']+">"
-	          + "<td><b>"+portfolio[index]['simbolo']+"</b><br><span class='ativo-nome'>"+portfolio[index]['empresa']+"</span></td>"
+			var line = "<tr class='stock-ticker "+portfolio[index]['simbolo']+"'>"
+	          + "<td><b><span class='stock-symbol'>"+portfolio[index]['simbolo']+"</span></b><br><span class='ativo-nome'>"+portfolio[index]['empresa']+"</span></td>"
 	          + "<td><span class='acao-var'>...</span></td>"
 	          + "<td class='numeric-cell'><span class='acao-preco'>00.00</span></td>"
 	          + "</tr>";
@@ -97,7 +97,7 @@ function User() {
         	  $('#tabela-valores tbody tr.'+simbolo+' .acao-preco').html(parseFloat(preco).toFixed(2)).addClass('stock-box-'+color);
         	  //console.log(status);
         	})
-		}		
+		}	
 	}
 
 	this.renderPortfolioAmount = function() {
@@ -105,8 +105,8 @@ function User() {
 		var capitalInvestido = 0;
 		
 		for (var index in portfolio) {
-			var line = "<tr class="+portfolio[index]['simbolo']+">"
-	          + "<td><b>"+portfolio[index]['simbolo']+"</b><br><span class='ativo-nome'>"+portfolio[index]['quantidade']+" AÇÕES</span></td>"
+			var line = "<tr class='stock-ticker "+portfolio[index]['simbolo']+"'>"
+	          + "<td><b><span class='stock-symbol'>"+portfolio[index]['simbolo']+"</span></b><br><span class='ativo-nome'>"+portfolio[index]['quantidade']+" AÇÕES</span></td>"
 	          + "<td><span class='acao-var'>...</span></td>"
 	          + "<td class='numeric-cell'><span class='acao-preco'>00.00</span></td>"
 	          + "</tr>";
@@ -134,7 +134,14 @@ function User() {
         	  $('#tabela-montante tbody tr.'+simbolo+' .acao-preco').html(montante.toFixed(2)).addClass('stock-box-'+color);
         	   
         	})
-		}		
+		}	
+			
+		$('.stock-ticker').on('click', function(){
+		    var ticker = $(this).find(".stock-symbol").text();
+		    localStorage.setItem("ticker", ticker);
+		    mainView.router.loadPage('ativo.html');
+		 });
+
 	}
 
 	this.setPortfolio = function() {

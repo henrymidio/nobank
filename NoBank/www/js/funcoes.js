@@ -137,6 +137,10 @@ function renderHeaderIndex() {
     $('.cotacao-sp').html(result['Realtime Global Securities Quote']['03. Latest Price']);
     $('.variacao-sp').html(result['Realtime Global Securities Quote']['09. Price Change Percentage'])
   });
+  //Cotação Dólar
+  $.getJSON("https://api.vitortec.com/currency/converter/v1.2/?from=usd&to=brl&value=1", function success(result) {
+    $('.cotacao-dolar').html(result['data']['resultSimple']);
+  });
 }
 
 function renderNDXChart(myChart, arrChart, periodo) {
