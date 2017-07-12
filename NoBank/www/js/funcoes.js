@@ -58,7 +58,7 @@ function gerarRandom() {
 }
 
 //Contrói e renderiza o gráfico
-function renderChart(dados, elmID, titulo) {
+function renderChart(dados, elmID, titulo, backgroundColor) {
   var ctx = document.getElementById(elmID).getContext('2d');
   var myChart = new Chart(ctx, {
     type: 'line',
@@ -66,7 +66,7 @@ function renderChart(dados, elmID, titulo) {
         labels: dados,
         datasets: [{
           data: dados,
-          backgroundColor: "#009EC2",
+          backgroundColor: backgroundColor,
           borderColor:'#009EC2',
         }]
       },
@@ -163,7 +163,7 @@ function renderNDXChart(myChart, arrChart, periodo) {
         }
           if(count > limite) {
             var lastUpdate = result["Meta Data"]["3. Last Refreshed"];
-            myChart = renderChart(arrChart.reverse(), 'myChart', 'INDEXNASDAQ: NDX - ' + formatDate(new Date(lastUpdate)) + ' GMT-4');
+            myChart = renderChart(arrChart.reverse(), 'myChart', 'INDEXNASDAQ: NDX - ' + formatDate(new Date(lastUpdate)) + ' GMT-4', '#009EC2');
             return false;
           }
       });

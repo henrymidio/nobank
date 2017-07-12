@@ -178,18 +178,37 @@ myApp.onPageInit('ativo', function (page) {
     $('.ordenar').addClass('button-disabled').attr('data-popup', '#');
   }
 
-  //Aguarda 500ms após a renderização da página para renderizar o gráfico
   var my2Chart;
-  setTimeout(function() { 
-    my2Chart = renderChart(gerarRandom(), 'ativoChart', '')
-    animateNumbers(957.37, $('#share-value'))
-  }, 500);
+  var ticker = localStorage.getItem("ticker");
+  $('.navbar-titulo').html(ticker);
+
+  $.getJSON("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="+ticker+"&interval=60min&apikey=VFAVA1B9R16KT761", function success(result) {
+    $('.price-change').html(result['Realtime Global Securities Quote']['09. Price Change']);
+    $('.price-change-percentage').html(result['Realtime Global Securities Quote']['09. Price Change Percentage']);
+
+    $.each(result, function( a, b ) {
+    var count = 0;
+    $.each(b, function( c, d ) {
+        if(d['4. close']) {
+          arrChart.push(d['4. close']);
+          count++;
+        }
+          if(count > 7) {
+            var lastUpdate = result["Meta Data"]["3. Last Refreshed"];
+            my2Chart = renderChart(arrChart.reverse(), 'ativoChart', '', 'transparent');
+            animateNumbers(arrChart[0], $('#share-value'));
+            return false;
+          }
+      });
+    });
+
+  });
 
   $('.periodo').on('click', function(){
     $('.periodo').removeClass('periodo-selecionado');
     $(this).addClass('periodo-selecionado');
     my2Chart.destroy()
-    renderChart(gerarRandom(), 'ativoChart', '')
+    renderChart(gerarRandom(), 'ativoChart', '', 'transparent')
   });
 });
 
