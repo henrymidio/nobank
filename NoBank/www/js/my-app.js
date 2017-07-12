@@ -179,8 +179,10 @@ myApp.onPageInit('ativo', function (page) {
   }
 
   var my2Chart;
+  var arrChart = [];
   var ticker = localStorage.getItem("ticker");
   $('.navbar-titulo').html(ticker);
+  $('.navbar-titulo').css('left', '0px');
 
   $.getJSON("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="+ticker+"&interval=60min&apikey=VFAVA1B9R16KT761", function success(result) {
     $('.price-change').html(result['Realtime Global Securities Quote']['09. Price Change']);
