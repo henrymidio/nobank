@@ -29,8 +29,8 @@
       <div class="header-navigation-drawer center">
         <h2>NoBank Investments</h2>
         <div class="row">
-          <div class="col-50">$<span style="font-size: 24px">43.852,57</span><br><span style="opacity: 0.6">INVESTIDO</span></div>
-          <div class="col-50">$<span style="font-size: 24px">00,00</span><br><span style="opacity: 0.6">DISPONÍVEL</span></div>
+          <div class="col-50">$<span style="font-size: 24px" class="current-money">00.00</span><br><span style="opacity: 0.6">INVESTIDO</span></div>
+          <div class="col-50">$<span style="font-size: 24px">00.00</span><br><span style="opacity: 0.6">DISPONÍVEL</span></div>
         </div>
       </div>
       <div class="list-block" style="margin-top: 6px">
@@ -65,15 +65,7 @@
               <div class="item-title">Contato</div>
             </div>
           </li>
-        </ul>
-
-
-        <!--
-        <div>
-          <canvas id="pizzaChart"></canvas>
-        </div>
-        -->
-        
+        </ul>        
       </div>
       
     </div>
@@ -107,22 +99,17 @@
                     <div class="center background-color-nasdaq" style="margin-top: -15px">
                       <br>
                       <p class="big-number color-white"><span class="cifrao">$</span><span class="current-money">00.00</span></p>
-                      <p class="color-white" style="margin-top: -50px;">+$84,60 (1,5%) <span>HOJE</span></p>
+                      <p class="color-white" style="margin-top: -50px;"><span class="sinal"></span>$<span class="cap-diff-amount">$00.00</span> (<span class="cap-diff-per">0%</span>)</p>
                       <br>
                     </div>
 
                     <!-- GRÁFICO-->
                     <div class="portfolio-chart card" style="margin-top: -20px">
                       <canvas id="myChart"></canvas>
-                      <div class="row center color-nasdaq periodos">
-                        <div class="col-20">20/5</div>
-                        <div class="col-20">10/6</div>
-                        <div class="col-20">13/6</div>
-                        <div class="col-20">28/8</div>
-                        <div class="col-20">29/11</div>
-                      </div>
+                      
+                      
                     </div>
-<BR>
+
                     <div class="center">
                       <p style="opacity: 0.6"><b>MEU PORTFÓLIO</b></p>
                     </div>
@@ -168,69 +155,141 @@
 
                   <div id="cotacoes" class="tab">
                     <br><br>
-                    <div class="row center color-white background-color-nasdaq" style="padding: 10px; ">
-                      <div class="col-25" style="border-left: 2px solid red">
-                        <b>Dólar</b><br>3,28<br>-0,3%
+                    <div class="row center color-white background-color-nasdaq" style="padding: 10px; padding-left: 0px">
+                      <div class="col-33">
+                        <b>Dólar</b><br><span class="cotacao-dolar">0.00</span><br><span class="variacao-dolar">0%</span>
                       </div>
-                      <div class="col-25" style="border-left: 2px solid blue">
-                        <b>Nasdaq</b><br>6.239,01<br>+1,2%
+                      <div class="col-33" style="border-left: 2px solid white">
+                        <b>Nasdaq</b><br><span class="cotacao-nasdaq">0</span><br><span class="variacao-nasdaq">0%</span>
                       </div>
-                      <div class="col-25" style="border-left: 2px solid blue">
-                        <b>Dow 30</b><br>21.528,99<br>+0,68%
-                      </div>
-                      <div class="col-25" style="border-left: 2px solid blue">
-                        <b>S&P 500</b><br>2.453,46<br>+0,83%
+                      <div class="col-33" style="border-left: 2px solid white">
+                        <b>S&P 500</b><br><span class="cotacao-sp">0</span><br><span class="variacao-sp">0%</span>
                       </div>
 
                     </div>
                     <div class="data-table" style="margin-bottom: 60px">
-                      <table>
+                      <table class="tabela-cotacoes">
                         
                           <tbody>
                               <tr class="stock-row">
-                                <td>GOOG<br><span class="ativo-nome">Alphabet Inc.</span></td>
-                                <td><span class="color-red">+0.5%</span></td>
-                                <td class="numeric-cell"><span class="stock-box-red">957.37</span></td>
+                                <td><span class="stock-symbol">ADBE</span><br><span class="ativo-nome">Adobe Systems Incorporated</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
                               </tr>
-                              <tr>
-                                <td>AAPL<br><span class="ativo-nome">Apple</span></td>
-                                <td><span class="color-green">+0.5%</span></td>
-                                <td class="numeric-cell"><span class="stock-box-green">47.85</span></td>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">AMD</span><br><span class="ativo-nome">Advanced Micro Devices Inc.</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
                               </tr>
-                              <tr>
-                                <td>TSLA<br><span class="ativo-nome">Tesla</span></td>
-                                <td><span class="color-red">+0.5%</span></td>
-                                <td class="numeric-cell"><span class="stock-box-red">369.80</span></td>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">GOOGL</span><br><span class="ativo-nome">Alphabet Inc.</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
                               </tr>
-                              <tr>
-                                <td>SBUB34<br><span class="ativo-nome">Starbucks</span></td>
-                                <td><span class="color-red">+0.5%</span></td>
-                                <td class="numeric-cell"><span class="stock-box-red">200.16</span></td>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">AMZN</span><br><span class="ativo-nome">Amazon.com, Inc.</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
                               </tr>
-                              <tr>
-                                <td>FDMO34<br><span class="ativo-nome">Ford</span></td>
-                                <td><span class="color-green">+0.5%</span></td>
-                                <td class="numeric-cell"><span class="stock-box-green">37.60</span></td>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">AAL</span><br><span class="ativo-nome">American Airlines Group</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
                               </tr>
-                              <tr>
-                                <td>MSFT<br><span class="ativo-nome">Microsoft</span></td>
-                                <td><span class="color-green">+0.5%</span></td>
-                                <td class="numeric-cell"><span class="stock-box-red">232.94</span></td>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">AAPL</span><br><span class="ativo-nome">Apple Inc.</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
                               </tr>
-                              <tr>
-                                <td>SNAP<br><span class="ativo-nome">Snapchat</span></td>
-                                <td><span class="color-red">+0.5%</span></td>
-                                <td class="numeric-cell"><span class="stock-box-red">17.88</span></td>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">BIDU</span><br><span class="ativo-nome">Baidu.com, Inc.</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
                               </tr>
-                              <tr>
-                                <td>FBOK34<br><span class="ativo-nome">Facebook</span></td>
-                                <td><span class="color-red">+0.5%</span></td>
-                                <td class="numeric-cell"><span class="stock-box-red">250.84</span></td>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">BIIB</span><br><span class="ativo-nome">Biogen Inc.</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
                               </tr>
-                              <tr>
-                                <td>SSFO<br><span class="ativo-nome">Salesforce</span></td>
-                                <td><span class="color-red">+0.5%</span></td>
-                                <td class="numeric-cell"><span class="stock-box-red">144.01.84</span></td>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">CSCO</span><br><span class="ativo-nome">Cisco Systems Inc.</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
+                              </tr>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">EBAY</span><br><span class="ativo-nome">eBay Inc.</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
+                              </tr>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">EA</span><br><span class="ativo-nome">Eletronic Arts</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
+                              </tr>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">FB</span><br><span class="ativo-nome">Facebook Inc.</span></td>
+                                <td><span></span></td>
+                                <td class="numeric-cell"><span></span></td>
+                              </tr>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">GPRO</span><br><span class="ativo-nome">GoPro Inc.</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
+                              </tr>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">INTC</span><br><span class="ativo-nome">Intel Corporation</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
+                              </tr>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">MELI</span><br><span class="ativo-nome">MercadoLibre</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
+                              </tr>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">MSFT</span><br><span class="ativo-nome">Microsoft Corporation</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
+                              </tr>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">NFLX</span><br><span class="ativo-nome">Netflix</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
+                              </tr>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">NVDA</span><br><span class="ativo-nome">NVIDIA Corporation</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
+                              </tr>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">PYPL</span><br><span class="ativo-nome">PayPal Holdings Inc.</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
+                              </tr>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">QCOM</span><br><span class="ativo-nome">QUALCOMM Incorporated</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
+                              </tr>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">SBUX</span><br><span class="ativo-nome">Starbucks Corporation</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
+                              </tr>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">SYMC</span><br><span class="ativo-nome">Symantec Corporation</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
+                              </tr>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">TSLA</span><br><span class="ativo-nome">Tesla Motors Inc.</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
+                              </tr>
+                              <tr class="stock-row">
+                                <td><span class="stock-symbol">VIAB</span><br><span class="ativo-nome">Viacom Inc.</span></td>
+                                <td><span>...</span></td>
+                                <td class="numeric-cell"><span>00.00</span></td>
                               </tr>
                             </tbody>
                         </table>
@@ -284,7 +343,7 @@
                 <div id="noticias" class="tab">
                       <br><br>
                     <div style="margin-left: 5px">
-                      <div class="content-block-title bold">Dúvidas Frequentes</div>
+                      <div class="content-block-title bold" style="font-size: 16px">Dúvidas Frequentes</div>
                       <div class="list-block">
                         <ul>
                           <li class="accordion-item"><a href="#" class="item-content item-link">

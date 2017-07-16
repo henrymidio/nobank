@@ -181,13 +181,24 @@ myApp.onPageInit('ativo', function (page) {
   var my2Chart;
   var arrChart = [];
   var ticker = localStorage.getItem("ticker");
-  $('.navbar-titulo').html(ticker);
-  $('.navbar-titulo').css('left', '0px');
+  $('.navbar-titulo').text(ticker);
+
+  $.getJSON("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+ticker+"&apikey=VFAVA1B9R16KT761", function success(result) {
+    animateNumbers(result['Realtime Global Securities Quote']['03. Latest Price'], $('#share-value'));
+    var priceChange = parseFloat(result['Realtime Global Securities Quote']['08. Price Change']).toFixed(2);
+
+    var color = getPerColor(priceChange.toString());
+    if(color == 'blue') {
+      $('.prices').addClass('color-nasdaq')
+    } else {
+      $('.prices').addClass('color-red')
+    }
+
+    $('.price-change').html(priceChange + "USD");
+    $('.price-change-percentage').html(result['Realtime Global Securities Quote']['09. Price Change Percentage']);
+  });
 
   $.getJSON("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="+ticker+"&interval=60min&apikey=VFAVA1B9R16KT761", function success(result) {
-    $('.price-change').html(result['Realtime Global Securities Quote']['09. Price Change']);
-    $('.price-change-percentage').html(result['Realtime Global Securities Quote']['09. Price Change Percentage']);
-
     $.each(result, function( a, b ) {
     var count = 0;
     $.each(b, function( c, d ) {
@@ -198,20 +209,35 @@ myApp.onPageInit('ativo', function (page) {
           if(count > 7) {
             var lastUpdate = result["Meta Data"]["3. Last Refreshed"];
             my2Chart = renderChart(arrChart.reverse(), 'ativoChart', '', 'transparent');
-            animateNumbers(arrChart[0], $('#share-value'));
             return false;
           }
       });
     });
-
   });
 
+  $.getJSON("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+ticker+"&apikey=VFAVA1B9R16KT761", function success(result) {
+    var abertura = parseFloat(result['Realtime Global Securities Quote']['04. Open (Current Trading Day)']).toFixed(2)
+    var maximo = parseFloat(result['Realtime Global Securities Quote']['05. High (Current Trading Day)']).toFixed(2)
+    var minimo = parseFloat(result['Realtime Global Securities Quote']['06. Low (Current Trading Day)']).toFixed(2)
+    var volume = result['Realtime Global Securities Quote']['10. Volume (Current Trading Day)']
+    var oscilacao = result['Realtime Global Securities Quote']['09. Price Change Percentage']
+    var ultimaNegociacao = parseFloat(result['Realtime Global Securities Quote']['03. Latest Price']).toFixed(2)
+
+    $('#abertura').text('$'+abertura)
+    $('#maximo').text('$'+maximo)
+    $('#minimo').text('$'+minimo)
+    $('#volume').text(volume)
+    $('#oscilacao').text(oscilacao)
+    $('#ultima-negociacao').text('$'+ultimaNegociacao)
+  });
+  /*
   $('.periodo').on('click', function(){
     $('.periodo').removeClass('periodo-selecionado');
     $(this).addClass('periodo-selecionado');
     my2Chart.destroy()
     renderChart(gerarRandom(), 'ativoChart', '', 'transparent')
   });
+*/
 });
 
  

@@ -153,6 +153,9 @@ td {
   font-weight: bold;
 }
 
+.stock-symbol {
+  font-weight: bold;
+}
 
 .stock-box-red {
 	background: red; border: 1px solid #ff3b30; padding: 6px; border-radius: 10px; color: white; border-radius: 27px;
