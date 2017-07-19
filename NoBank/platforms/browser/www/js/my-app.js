@@ -230,6 +230,20 @@ myApp.onPageInit('ativo', function (page) {
     $('#oscilacao').text(oscilacao)
     $('#ultima-negociacao').text('$'+ultimaNegociacao)
   });
+  
+  $.ajax
+  ({
+    type: "GET",
+    url: "https://api.intrinio.com/companies?ticker="+ticker,
+    dataType: 'json',
+    beforeSend: function (xhr) {
+      xhr.setRequestHeader ("Authorization", "Basic " + btoa("1c80288da8fc0d822a5534afc162c24f" + ":" + "98ddab52e25ca41f65ea0d60eb5f479c"));
+    },
+    success: function (d){
+      $('#short-description').text(d.short_description) 
+    }
+  });
+
   /*
   $('.periodo').on('click', function(){
     $('.periodo').removeClass('periodo-selecionado');
