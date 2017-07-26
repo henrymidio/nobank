@@ -240,7 +240,8 @@ myApp.onPageInit('ativo', function (page) {
       xhr.setRequestHeader ("Authorization", "Basic " + btoa("1c80288da8fc0d822a5534afc162c24f" + ":" + "98ddab52e25ca41f65ea0d60eb5f479c"));
     },
     success: function (d){
-      $('#short-description').text(d.short_description) 
+    	$('navbar-titulo').text(d.ticker + '' + d.legal_name)
+     	$('#short-description').text(d.short_description) 
     }
   });
 
