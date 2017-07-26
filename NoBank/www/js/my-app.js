@@ -181,7 +181,7 @@ myApp.onPageInit('ativo', function (page) {
   var my2Chart;
   var arrChart = [];
   var ticker = localStorage.getItem("ticker");
-  $('.navbar-titulo').text(ticker);
+  //$('.navbar-titulo').text(ticker);
 
   $.getJSON("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+ticker+"&apikey=VFAVA1B9R16KT761", function success(result) {
     animateNumbers(result['Realtime Global Securities Quote']['03. Latest Price'], $('#share-value'));
@@ -240,7 +240,7 @@ myApp.onPageInit('ativo', function (page) {
       xhr.setRequestHeader ("Authorization", "Basic " + btoa("1c80288da8fc0d822a5534afc162c24f" + ":" + "98ddab52e25ca41f65ea0d60eb5f479c"));
     },
     success: function (d){
-    	$('.navbar-titulo').text(d.ticker + '' + d.legal_name)
+    	$('.navbar-titulo').text(d.ticker + ' - ' + d.legal_name)
      	$('#short-description').text(d.short_description) 
     }
   });
