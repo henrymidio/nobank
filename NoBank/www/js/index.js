@@ -38,7 +38,8 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+        StatusBar.overlaysWebView(false);
         StatusBar.styleLightContent();
-        StatusBar.backgroundColorByHexString("#2f3a41");
+        StatusBar.backgroundColorByHexString("#009EC2");
     }
 };
