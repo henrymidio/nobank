@@ -174,11 +174,11 @@ myApp.onPageInit('a-mercado', function (page) {
 
 myApp.onPageInit('ativo', function (page) {
   //Verifica se o mercado está aberto para liberar os botões de compra/venda
-  /*
+  
   if(!isMarketOpen()) {
     $('.ordenar').addClass('button-disabled').attr('data-popup', '#');
   }
-  */
+  
   var my2Chart;
   var arrChart = [];
   var ticker = localStorage.getItem("ticker");

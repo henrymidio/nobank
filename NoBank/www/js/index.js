@@ -38,6 +38,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        
+        StatusBar.styleLightContent();
+        StatusBar.backgroundColorByHexString("#2f3a41");
     }
 };
