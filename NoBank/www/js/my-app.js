@@ -1,5 +1,5 @@
 //Verifica se o pregão está aberto para setar o theme layout
-isMarketOpen();
+//isMarketOpen();
 
 // Initialize your app
 var myApp = new Framework7({
@@ -174,10 +174,11 @@ myApp.onPageInit('a-mercado', function (page) {
 
 myApp.onPageInit('ativo', function (page) {
   //Verifica se o mercado está aberto para liberar os botões de compra/venda
+  /*
   if(!isMarketOpen()) {
     $('.ordenar').addClass('button-disabled').attr('data-popup', '#');
   }
-
+  */
   var my2Chart;
   var arrChart = [];
   var ticker = localStorage.getItem("ticker");
@@ -240,6 +241,7 @@ myApp.onPageInit('ativo', function (page) {
       xhr.setRequestHeader ("Authorization", "Basic " + btoa("1c80288da8fc0d822a5534afc162c24f" + ":" + "98ddab52e25ca41f65ea0d60eb5f479c"));
     },
     success: function (d){
+      $('.navbar-titulo').text(d.ticker + "-" + d.legal_name);
       $('#short-description').text(d.short_description) 
     }
   });
@@ -254,4 +256,6 @@ myApp.onPageInit('ativo', function (page) {
 */
 });
 
- 
+myApp.onPageInit('ativo', function (page) {
+
+});

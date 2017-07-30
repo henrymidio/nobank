@@ -14,6 +14,10 @@ td {
   width: 29% !important;
 }
 
+.sem-borda {
+  border: none;
+}
+
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color: rgba(0, 0, 0, 0.4);
 }
