@@ -38,8 +38,11 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+        alert("bhhj")
+        /*
         StatusBar.overlaysWebView(false);
         StatusBar.styleLightContent();
         StatusBar.backgroundColorByHexString("#009EC2");
+        */
     }
 };
