@@ -1,6 +1,10 @@
 //Verifica se o pregão está aberto para setar o theme layout
 isMarketOpen();
 
+document.addEventListener('deviceready', function() {
+  alert("hcaralho")
+}, false);
+
 // Initialize your app
 var myApp = new Framework7({
     
