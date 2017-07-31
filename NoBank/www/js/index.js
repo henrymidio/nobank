@@ -38,7 +38,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        alert("bhhj")
+        alert(id)
         StatusBar.overlaysWebView(false);
         //StatusBar.styleLightContent();
         StatusBar.backgroundColorByHexString("#009EC2");
