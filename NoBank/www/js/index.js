@@ -33,14 +33,14 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-      alert('device-ready')
+        alert('device-ready')
         app.receivedEvent('deviceready');
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         alert("bhhj")
-        
-        StatusBar.styleLightContent();
+        StatusBar.overlaysWebView(false);
+        //StatusBar.styleLightContent();
         StatusBar.backgroundColorByHexString("#009EC2");
         
     }
