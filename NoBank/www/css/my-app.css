@@ -10,6 +10,14 @@ td {
   padding-bottom: 6px !important;
 }
 
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+  
+}
+
 .list-block .item-input {
   width: 29% !important;
 }
