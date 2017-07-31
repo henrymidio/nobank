@@ -10,16 +10,15 @@ td {
   padding-bottom: 6px !important;
 }
 
-html, body {
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    position: relative;
-  
-}
-
 .list-block .item-input {
   width: 29% !important;
+}
+
+.statusbar-overlay {
+    background: #009EC2;
+    /* We can add transition for smooth color animation */
+    -webkit-transition: 400ms;
+    transition: 400ms;
 }
 
 .sem-borda {
