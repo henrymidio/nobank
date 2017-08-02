@@ -1,8 +1,10 @@
 function User() {
 
+	var portfolio = [];
+
 	/*
 		Construtor
-	*/
+	
 	var portfolio = [
 		{
 			'empresa': 'Starbucks',
@@ -35,6 +37,9 @@ function User() {
 			'pago': 930.98
 		}
 	]
+
+*/
+
 	localStorage.setItem("portfolioStocks", JSON.stringify(portfolio));
 
 	this.getName = function() {
@@ -98,6 +103,12 @@ function User() {
         	  //console.log(status);
         	})
 		}	
+
+		$('.stock-ticker').on('click', function(){
+		    var ticker = $(this).find(".stock-symbol").text();
+		    localStorage.setItem("ticker", ticker);
+		    mainView.router.loadPage('ativo.html');
+		 });
 	}
 
 	this.renderPortfolioAmount = function() {
