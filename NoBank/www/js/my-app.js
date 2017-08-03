@@ -182,9 +182,10 @@ myApp.onPageInit('ativo', function (page) {
   var my2Chart;
   var arrChart = [];
   var ticker = localStorage.getItem("ticker");
+  /*
   $('.navbar-titulo').html(ticker);
   $('.navbar-titulo').css('left', '0px');
-
+  */
   $.getJSON("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+ticker+"&apikey=VFAVA1B9R16KT761", function success(result) {
     animateNumbers(result['Realtime Global Securities Quote']['03. Latest Price'], $('#share-value'));
     var priceChange = parseFloat(result['Realtime Global Securities Quote']['08. Price Change']).toFixed(2);
@@ -200,21 +201,15 @@ myApp.onPageInit('ativo', function (page) {
     $('.price-change-percentage').html(result['Realtime Global Securities Quote']['09. Price Change Percentage']);
   });
 
+  //Pega o valor de fechamento de preço de cada intervalo de 1 hora
   $.getJSON("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="+ticker+"&interval=60min&apikey=VFAVA1B9R16KT761", function success(result) {
     $.each(result, function( a, b ) {
     var count = 0;
     $.each(b, function( c, d ) {
-      if(count == 0) {
-        if(d['1. open']) {
-          arrChart.push(d['4. close']);
-          count++;
-        }
-      } else {
         if(d['4. close']) {
           arrChart.push(d['4. close']);
           count++;
         }
-      }
           if(count > 7) {
             var lastUpdate = result["Meta Data"]["3. Last Refreshed"];
             my2Chart = renderChart(arrChart.reverse(), 'ativoChart', '', 'transparent');
@@ -249,6 +244,8 @@ myApp.onPageInit('ativo', function (page) {
       xhr.setRequestHeader ("Authorization", "Basic " + btoa("1c80288da8fc0d822a5534afc162c24f" + ":" + "98ddab52e25ca41f65ea0d60eb5f479c"));
     },
     success: function (d){
+      $('.navbar-titulo').html(d.legal_name);
+      $('.navbar-titulo').css('left', '0px');
      	$('#short-description').text(d.short_description) 
     }
   });
