@@ -16,7 +16,6 @@ td {
 
 .statusbar-overlay {
     background: #009EC2;
-    height: 5px !important;
     /* We can add transition for smooth color animation */
     -webkit-transition: 400ms;
     transition: 400ms;
