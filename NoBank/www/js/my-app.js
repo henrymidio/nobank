@@ -204,10 +204,17 @@ myApp.onPageInit('ativo', function (page) {
     $.each(result, function( a, b ) {
     var count = 0;
     $.each(b, function( c, d ) {
+      if(count == 0) {
+        if(d['1. open']) {
+          arrChart.push(d['4. close']);
+          count++;
+        }
+      } else {
         if(d['4. close']) {
           arrChart.push(d['4. close']);
           count++;
         }
+      }
           if(count > 7) {
             var lastUpdate = result["Meta Data"]["3. Last Refreshed"];
             my2Chart = renderChart(arrChart.reverse(), 'ativoChart', '', 'transparent');
