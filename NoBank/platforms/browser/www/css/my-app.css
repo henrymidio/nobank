@@ -14,6 +14,13 @@ td {
   width: 29% !important;
 }
 
+.statusbar-overlay {
+    background: #009EC2;
+    /* We can add transition for smooth color animation */
+    -webkit-transition: 400ms;
+    transition: 400ms;
+}
+
 .sem-borda {
   border: none;
 }

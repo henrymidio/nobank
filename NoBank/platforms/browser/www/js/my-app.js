@@ -173,18 +173,21 @@ myApp.onPageInit('a-mercado', function (page) {
 
 
 myApp.onPageInit('ativo', function (page) {
-  //Verifica se o mercado está aberto para liberar os botões de compra/venda
-  /*
-  if(!isMarketOpen()) {
-    $('.ordenar').addClass('button-disabled').attr('data-popup', '#');
-  }
-  */
   var my2Chart;
   var arrChart = [];
   var ticker = localStorage.getItem("ticker");
-  $('.navbar-titulo').html(ticker);
-  $('.navbar-titulo').css('left', '0px');
 
+  //Verifica se o usuário possui papéis daquela ação para ativar o botão de venda
+  if(usuario.hasStock(ticker)) {
+    $('#sell-stock').removeClass('button-disabled').attr('data-popup', '.popup-ordem');
+  }
+
+  //Verifica se o mercado está aberto para liberar os botões de compra/venda
+  if(!isMarketOpen()) {
+    $('.ordenar').addClass('button-disabled').attr('data-popup', '#');
+  }
+
+  //Seta informações da ação
   $.getJSON("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+ticker+"&apikey=VFAVA1B9R16KT761", function success(result) {
     animateNumbers(result['Realtime Global Securities Quote']['03. Latest Price'], $('#share-value'));
     var priceChange = parseFloat(result['Realtime Global Securities Quote']['08. Price Change']).toFixed(2);
@@ -200,6 +203,7 @@ myApp.onPageInit('ativo', function (page) {
     $('.price-change-percentage').html(result['Realtime Global Securities Quote']['09. Price Change Percentage']);
   });
 
+  //Pega o valor de fechamento de preço de cada intervalo de 1 hora
   $.getJSON("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="+ticker+"&interval=60min&apikey=VFAVA1B9R16KT761", function success(result) {
     $.each(result, function( a, b ) {
     var count = 0;
@@ -217,6 +221,7 @@ myApp.onPageInit('ativo', function (page) {
     });
   });
 
+  //Seta informações da ação
   $.getJSON("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol="+ticker+"&apikey=VFAVA1B9R16KT761", function success(result) {
     var abertura = parseFloat(result['Realtime Global Securities Quote']['04. Open (Current Trading Day)']).toFixed(2)
     var maximo = parseFloat(result['Realtime Global Securities Quote']['05. High (Current Trading Day)']).toFixed(2)
@@ -233,6 +238,7 @@ myApp.onPageInit('ativo', function (page) {
     $('#ultima-negociacao').text('$'+ultimaNegociacao)
   });
   
+  //Seta titulo da navbar e descrição da empresa (de outra api)
   $.ajax
   ({
     type: "GET",
@@ -242,7 +248,19 @@ myApp.onPageInit('ativo', function (page) {
       xhr.setRequestHeader ("Authorization", "Basic " + btoa("1c80288da8fc0d822a5534afc162c24f" + ":" + "98ddab52e25ca41f65ea0d60eb5f479c"));
     },
     success: function (d){
+      $('.navbar-titulo').html(d.legal_name);
+      $('.navbar-titulo').css('left', '0px');
      	$('#short-description').text(d.short_description) 
+    }
+  });
+
+  //Estabele o tipo de ordem a ser executada já que a tela para ambas operações é a mesma
+  $('.ordenar').on('click', function(){
+    var tipoDeOrdem = this.id;
+    if(tipoDeOrdem == 'sell-stock') {
+      localStorage.setItem('tipoDeOrdem', 'sell')
+    } else {
+      localStorage.setItem('tipoDeOrdem', 'buy')
     }
   });
 

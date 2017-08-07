@@ -1,8 +1,10 @@
 function User() {
 
+	var portfolio = [];
+
 	/*
 		Construtor
-	*/
+	
 	var portfolio = [
 		{
 			'empresa': 'Starbucks',
@@ -35,6 +37,9 @@ function User() {
 			'pago': 930.98
 		}
 	]
+
+*/
+
 	localStorage.setItem("portfolioStocks", JSON.stringify(portfolio));
 
 	this.getName = function() {
@@ -50,7 +55,10 @@ function User() {
 	}
 
 	this.getCapitalInicial = function() {
-		var portfolio = JSON.parse(localStorage.getItem("portfolioStocks"));
+		var portfolio = getPortfolio();
+		if(portfolio.length < 1) {
+			return 0;
+		}
 		var capitalInicial = 0;
 		for (var index in portfolio) {
 			capitalInicial = capitalInicial + (portfolio[index]['pago'] * 2);
@@ -98,6 +106,12 @@ function User() {
         	  //console.log(status);
         	})
 		}	
+
+		$('.stock-ticker').on('click', function(){
+		    var ticker = $(this).find(".stock-symbol").text();
+		    localStorage.setItem("ticker", ticker);
+		    mainView.router.loadPage('ativo.html');
+		 });
 	}
 
 	this.renderPortfolioAmount = function() {
@@ -144,6 +158,10 @@ function User() {
 
 	}
 
+	this.getPortfolio = function() {
+		return JSON.parse(localStorage.getItem("portfolioStocks"));
+	}
+
 	this.setPortfolio = function() {
 	}
 
@@ -151,6 +169,22 @@ function User() {
 
 	}
 	this.sellStock = function(qnt, cod) {
+		
+	}
+
+	this.hasStock = function(ticker) {
+		try {
+			var portfolio = getPortfolio();
+			var retorno = false;
+			for (var index in portfolio) {
+				if(portfolio[index]['simbolo'] == ticker) {
+					return true;
+				}	
+			}
+			return retorno;
+		} catch(e) {
+			return false;
+		}
 		
 	}
 }
