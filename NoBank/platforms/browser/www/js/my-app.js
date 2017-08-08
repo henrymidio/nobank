@@ -27,18 +27,19 @@ myApp.onPageInit('index', function (page) {
   //Calcula e exibe a variação total de capital
   $('.cap-diff-amount').text('00.00')
   var capInv = usuario.getCapitalInvestido();
-  var capInit = usuario.getCapitalInicial();
-  var capDiffAmount = (capInv - capInit);
-  var percentageV = getVariationPercentage(capInit, capInv);
+  var capInit = 10000;//usuario.getCapitalInicial();
+  var capDiffAmount = ((parseFloat(capInv) + parseFloat(usuario.getCapitalDisponivel())) - capInit);
+  var percentageV = getVariationPercentage(capInit, (parseFloat(capInv) + parseFloat(usuario.getCapitalDisponivel())));
   var color = getPerColor(capDiffAmount.toString());
   if(color == 'blue') {
     $('.sinal').text('+');
     $('.cap-diff-per').text(percentageV + '%');
-    animateNumbers(capDiffAmount, $('.cap-diff-amount'));
+    animateNumbers(parseFloat(capDiffAmount).toFixed(2), $('.cap-diff-amount'));
   } else {
     $('.sinal').text('-');
     $('.cap-diff-per').text(percentageV + '%');
-    $('.cap-diff-amount').text(capDiffAmount.toString().substring(1))
+    var semSinal = capDiffAmount.toString().substring(1)
+    $('.cap-diff-amount').text(parseFloat(semSinal).toFixed(2))
   }
 
 
@@ -163,12 +164,41 @@ myApp.onPageInit('index', function (page) {
 }).trigger();
 
 myApp.onPageInit('a-mercado', function (page) {
-  $('#ordena').on('click', function(){
+  $('#ordem-preco').attr("placeholder", localStorage.getItem('ativo-preco'));
+  var tipoDeOrdem = localStorage.getItem("tipoDeOrdem");
+
+  var ticker = localStorage.getItem("ticker");
+  var empresa = localStorage.getItem("legal_name");
+  var valor = localStorage.getItem('ativo-preco');
+
+  $('.ordenar').on('click', function(){
+    var quantidade = $('.ordem-quantidade').val();
+    var total = (valor * quantidade) + 10;
+    var capitalDisponivel = usuario.getCapitalDisponivel();
+    if(capitalDisponivel < total) {
+      alert("Capital Insuficiente")
+      return false;
+    }
       myApp.confirm('Tem certeza que deseja executar esta operação?', function () {
+          if(tipoDeOrdem == 'buy') {
+            var stock = {
+              simbolo: ticker,
+              empresa: empresa,
+              quantidade: quantidade,
+              pago: valor
+            }
+            usuario.buyStock(stock);
+          }
+          
           myApp.alert('Sua ordem foi executada com sucesso!');
           mainView.router.loadPage('index.html');
       });
   });
+
+  $(".ordem-quantidade").keyup(function(){
+      var total = (valor * $(this).val()) + 10;
+      $('#ordem-total').val("$" + parseFloat(total).toFixed(2));
+    });
 });
 
 
@@ -236,6 +266,8 @@ myApp.onPageInit('ativo', function (page) {
     $('#volume').text(volume)
     $('#oscilacao').text(oscilacao)
     $('#ultima-negociacao').text('$'+ultimaNegociacao)
+
+    localStorage.setItem("ativo-preco", ultimaNegociacao);
   });
   
   //Seta titulo da navbar e descrição da empresa (de outra api)
@@ -251,6 +283,7 @@ myApp.onPageInit('ativo', function (page) {
       $('.navbar-titulo').html(d.legal_name);
       $('.navbar-titulo').css('left', '0px');
      	$('#short-description').text(d.short_description) 
+      localStorage.setItem("legal_name", d.legal_name);
     }
   });
 
@@ -263,7 +296,6 @@ myApp.onPageInit('ativo', function (page) {
       localStorage.setItem('tipoDeOrdem', 'buy')
     }
   });
-
   /*
   $('.periodo').on('click', function(){
     $('.periodo').removeClass('periodo-selecionado');
@@ -273,8 +305,9 @@ myApp.onPageInit('ativo', function (page) {
   });
 */
 });
-
 myApp.onPageBack('ativo', function (page) {
   $('.navbar-titulo').html('$'+parseFloat(usuario.getCapitalInvestido()).toFixed(2));
   $('.navbar-titulo').css('left', '0px');
 });
+
+

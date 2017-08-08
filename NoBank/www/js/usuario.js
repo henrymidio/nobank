@@ -51,7 +51,7 @@ function User() {
 	}
 
 	this.getCapitalInicial = function() {
-		var portfolio = getPortfolio();
+		var portfolio = usuario.getPortfolio();
 		if(portfolio.length < 1) {
 			return 0;
 		}
@@ -63,11 +63,15 @@ function User() {
 	}
 
 	this.getCapitalInvestido = function() {
-		return localStorage.getItem("capitalInvestido");
+		var capitalInvestido = localStorage.getItem("capitalInvestido") ? localStorage.getItem("capitalInvestido") : 0;
+		return capitalInvestido;
+	}
+	this.setCapitalInvestido = function(novoCapitalInvestido) {
+		localStorage.setItem("capitalInvestido", novoCapitalInvestido);
 	}
 
-	this.getCapitaldisponivel = function() {
-		var capitalDisponivel = localStorage.getItem("capitalDisponivel") ? localStorage.getItem("capitalDisponivel") : 10000.00;
+	this.getCapitalDisponivel = function() {
+		var capitalDisponivel = localStorage.getItem("capitalDisponivel") ? localStorage.getItem("capitalDisponivel") : 10000;
 		return capitalDisponivel;
 	}
 	this.setCapitalDisponivel = function(novoCapitalDisponivel) {
@@ -138,6 +142,8 @@ function User() {
         	  animateNumbers(capitalInvestido, $('.current-money'));
         	  localStorage.setItem("capitalInvestido", capitalInvestido);
 
+        	  $('#menu-disponivel').text(usuario.getCapitalDisponivel());
+
         	  //Verificação da cor das variações
         	  variacao = variacao.toFixed(2);
         	  var color = getPerColor(variacao.toString());
@@ -157,25 +163,24 @@ function User() {
 	}
 
 	this.getPortfolio = function() {
-		try {
-			var ret = JSON.parse(localStorage.getItem("portfolioStocks"));
-			return ret;
-		} catch (e) {
-			return [];
-		}	
+		var pt = localStorage.getItem("portfolioStocks") ? JSON.parse(localStorage.getItem("portfolioStocks")) : [];
+		return pt;
 	}
 	this.setPortfolio = function(novoPortfolio) {
 		localStorage.setItem("portfolioStocks", JSON.stringify(novoPortfolio));
 	}
 
 	this.buyStock = function(stock) {
-		var cDisponivel = getCapitaldisponivel();
-		var novoC = cDisponivel - stock.pago;
-		setCapitalDisponivel(novoC);
+		var cDisponivel = usuario.getCapitalDisponivel();
+		var novoC = cDisponivel - (stock.pago * stock.quantidade);
+		usuario.setCapitalDisponivel(novoC - 10);
 
-		var portfolio = getPortfolio();
+		var portfolio = usuario.getPortfolio();
 		portfolio.push(stock);
-		setPortfolio(portfolio);
+		usuario.setPortfolio(portfolio);
+
+		usuario.setCapitalInvestido((parseFloat(stock.pago) * stock.quantidade) + parseFloat(usuario.getCapitalInvestido()));
+
 	}
 	this.sellStock = function(qnt, ticker) {
 		
@@ -183,7 +188,7 @@ function User() {
 
 	this.hasStock = function(ticker) {
 		try {
-			var portfolio = getPortfolio();
+			var portfolio = usuario.getPortfolio();
 			var retorno = false;
 			for (var index in portfolio) {
 				if(portfolio[index]['simbolo'] == ticker) {
