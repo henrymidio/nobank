@@ -273,7 +273,6 @@ myApp.onPageInit('ativo', function (page) {
   });
 */
 });
-
 myApp.onPageBack('ativo', function (page) {
   $('.navbar-titulo').html('$'+parseFloat(usuario.getCapitalInvestido()).toFixed(2));
   $('.navbar-titulo').css('left', '0px');

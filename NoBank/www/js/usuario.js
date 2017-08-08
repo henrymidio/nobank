@@ -1,7 +1,5 @@
 function User() {
 
-	var portfolio = [];
-
 	/*
 		Construtor
 	
@@ -40,8 +38,6 @@ function User() {
 
 */
 
-	localStorage.setItem("portfolioStocks", JSON.stringify(portfolio));
-
 	this.getName = function() {
 		localStorage.getItem("name")
 	}
@@ -71,9 +67,11 @@ function User() {
 	}
 
 	this.getCapitaldisponivel = function() {
-		return localStorage.getItem("capitalDisponivel");
+		var capitalDisponivel = localStorage.getItem("capitalDisponivel") ? localStorage.getItem("capitalDisponivel") : 10000.00;
+		return capitalDisponivel;
 	}
-	this.setCapitalDisponivel = function() {
+	this.setCapitalDisponivel = function(novoCapitalDisponivel) {
+		localStorage.setItem("capitalDisponivel", novoCapitalDisponivel);
 	}
 
 	
@@ -159,16 +157,27 @@ function User() {
 	}
 
 	this.getPortfolio = function() {
-		return JSON.parse(localStorage.getItem("portfolioStocks"));
+		try {
+			var ret = JSON.parse(localStorage.getItem("portfolioStocks"));
+			return ret;
+		} catch (e) {
+			return [];
+		}	
+	}
+	this.setPortfolio = function(novoPortfolio) {
+		localStorage.setItem("portfolioStocks", JSON.stringify(novoPortfolio));
 	}
 
-	this.setPortfolio = function() {
-	}
+	this.buyStock = function(stock) {
+		var cDisponivel = getCapitaldisponivel();
+		var novoC = cDisponivel - stock.pago;
+		setCapitalDisponivel(novoC);
 
-	this.buyStock = function(qnt, cod) {
-
+		var portfolio = getPortfolio();
+		portfolio.push(stock);
+		setPortfolio(portfolio);
 	}
-	this.sellStock = function(qnt, cod) {
+	this.sellStock = function(qnt, ticker) {
 		
 	}
 
