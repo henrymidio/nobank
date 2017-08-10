@@ -119,6 +119,25 @@ myApp.onPageInit('index', function (page) {
     $('.tab-link').removeClass('active')
     $(this).addClass('active')
     changeTabEffect('#transacoes')
+
+    var transacoes = usuario.getHistorico();
+    $('#transacoes ul').empty();
+    for (var index in transacoes) {
+      var line = '<li>'
+      + '<div class="item-content">'
+      + '<div class="item-inner">'
+      + '<div class="item-title-row">'
+      + '<div class="item-title"><b><span class="transacao-ticker">'+transacoes[index]['ticker']+'</span>: <span class="transacao-ordem">'+transacoes[index]['tipoDeOrdem']+'</span></b></div>'
+      + '<div class="item-after">'+transacoes[index]['valor']+'</div>'
+      + '</div>'
+      + '<div class="item-subtitle">'+transacoes[index]['executada']+'</div>'
+      + '</div>'
+      + '</div>'
+      + '</li>';
+      $('#transacoes ul').append(line);
+        
+    }
+
   });
 
   $$('#tab-noticias').on('click', function(){

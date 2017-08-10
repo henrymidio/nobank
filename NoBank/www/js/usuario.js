@@ -80,7 +80,7 @@ function User() {
 
 	
 	this.renderPortfolioPrices = function() {
-		var portfolio = JSON.parse(localStorage.getItem("portfolioStocks"));
+		var portfolio = usuario.getPortfolio();
 		if(!$.trim($("#tabela-valores tbody").html())=='') {
 			return false;
 		}
@@ -117,7 +117,8 @@ function User() {
 	}
 
 	this.renderPortfolioAmount = function() {
-		var portfolio = JSON.parse(localStorage.getItem("portfolioStocks"));
+		var portfolio = usuario.getPortfolio();
+		
 		var capitalInvestido = 0;
 		
 		for (var index in portfolio) {
@@ -164,22 +165,67 @@ function User() {
 
 	this.getPortfolio = function() {
 		var pt = localStorage.getItem("portfolioStocks") ? JSON.parse(localStorage.getItem("portfolioStocks")) : [];
+		pt.sort(function(a, b) { 
+		    return a.simbolo.localeCompare(b.simbolo); 
+		});
 		return pt;
 	}
 	this.setPortfolio = function(novoPortfolio) {
 		localStorage.setItem("portfolioStocks", JSON.stringify(novoPortfolio));
 	}
 
+	this.getHistorico = function() {
+		var historico = localStorage.getItem("historico") ? JSON.parse(localStorage.getItem("historico")) : [];
+		return historico;
+	}
+	this.setHistorico = function(novaTransacao) {
+		localStorage.setItem("historico", JSON.stringify(novaTransacao));
+		return true;
+	}
+
 	this.buyStock = function(stock) {
+		var novaStock = stock;
+
 		var cDisponivel = usuario.getCapitalDisponivel();
 		var novoC = cDisponivel - (stock.pago * stock.quantidade);
 		usuario.setCapitalDisponivel(novoC - 10);
 
 		var portfolio = usuario.getPortfolio();
-		portfolio.push(stock);
+
+		//Soma de registros caso já exista um papel da ação comprada
+		var obj = getObjBySimbolo(portfolio, stock.simbolo);
+		console.log(obj)
+		if(obj) {
+			var novaQuantidade = +obj.quantidade + +stock.quantidade;
+			var novoValorPago  = +obj.pago + (stock.pago * stock.quantidade);
+			var novaStock = {
+				empresa: obj.empresa,
+				simbolo: obj.simbolo,
+				quantidade: novaQuantidade,
+				pago: novoValorPago
+			};
+			//Remove a stock repetida
+			portfolio = portfolio.filter(function( obj ) {
+			    return obj.simbolo !== stock.simbolo;
+			});
+		}
+
+		portfolio.push(novaStock);
 		usuario.setPortfolio(portfolio);
 
 		usuario.setCapitalInvestido((parseFloat(stock.pago) * stock.quantidade) + parseFloat(usuario.getCapitalInvestido()));
+
+		//Adiciona transação ao histórico
+		var dataTransacao = new Date();
+		var transacao = {
+			ticker: stock.simbolo,
+			tipoDeOrdem: "Compra a Mercado",
+			valor: stock.pago,
+			executada: dataTransacao
+		}
+		var historico = usuario.getHistorico();
+		historico.push(transacao);
+		usuario.setHistorico(historico);
 
 	}
 	this.sellStock = function(qnt, ticker) {

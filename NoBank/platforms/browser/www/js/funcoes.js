@@ -228,3 +228,11 @@ function changeTabEffect(show) {
           })
     } 
   }
+
+  function getObjBySimbolo(arr, value) {
+
+  var result  = arr.filter(function(o){return o.simbolo == value;} );
+
+  return result? result[0] : null; // or undefined
+
+}
