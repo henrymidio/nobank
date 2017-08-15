@@ -180,12 +180,13 @@ myApp.onPageInit('a-mercado', function (page) {
     var quantidade = $('.ordem-quantidade').val();
     var total = (valor * quantidade) + 10;
     var capitalDisponivel = usuario.getCapitalDisponivel();
-    if(capitalDisponivel < total) {
-      alert("Capital Insuficiente")
-      return false;
-    }
+    
       myApp.confirm('Tem certeza que deseja executar esta operação?', function () {
           if(tipoDeOrdem == 'buy') {
+            if(capitalDisponivel < total) {
+              alert("Capital Insuficiente")
+              return false;
+            }
             var stock = {
               simbolo: ticker,
               empresa: empresa,
@@ -227,7 +228,7 @@ myApp.onPageInit('ativo', function (page) {
 
   //Verifica se o mercado está aberto para liberar os botões de compra/venda
   if(!isMarketOpen()) {
-    //$('.ordenar').addClass('button-disabled').attr('data-popup', '#');
+    $('.ordenar').addClass('button-disabled').attr('data-popup', '#');
   }
 
   //Seta informações da ação
