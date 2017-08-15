@@ -186,6 +186,7 @@ function User() {
 	this.buyStock = function(stock) {
 		var novaStock = stock;
 
+		//Atualiza o capitak disponível
 		var cDisponivel = usuario.getCapitalDisponivel();
 		var novoC = cDisponivel - (stock.pago * stock.quantidade);
 		usuario.setCapitalDisponivel(novoC - 10);
@@ -194,7 +195,6 @@ function User() {
 
 		//Soma de registros caso já exista um papel da ação comprada
 		var obj = getObjBySimbolo(portfolio, stock.simbolo);
-		console.log(obj)
 		if(obj) {
 			var novaQuantidade = +obj.quantidade + +stock.quantidade;
 			var novoValorPago  = +obj.pago + (stock.pago * stock.quantidade);
@@ -216,20 +216,56 @@ function User() {
 		usuario.setCapitalInvestido((parseFloat(stock.pago) * stock.quantidade) + parseFloat(usuario.getCapitalInvestido()));
 
 		//Adiciona transação ao histórico
-		var dataTransacao = new Date();
+		var dataTransacao = formatDate(new Date());
 		var transacao = {
 			ticker: stock.simbolo,
 			tipoDeOrdem: "Compra a Mercado",
 			valor: stock.pago,
-			executada: dataTransacao
+			quantidade: stock.quantidade,
+			total: (stock.pago * stock.quantidade),
+			dataTransacao: dataTransacao
 		}
 		var historico = usuario.getHistorico();
 		historico.push(transacao);
 		usuario.setHistorico(historico);
 
 	}
-	this.sellStock = function(qnt, ticker) {
+	this.sellStock = function(stock, quantidade) {
+		var portfolio = usuario.getPortfolio();
+
+		var obj = getObjBySimbolo(portfolio, stock.simbolo);
+		var novaQuantidade = +obj.quantidade - +quantidade;
+		var novoValorPago  = +obj.pago - (stock.pago * stock.quantidade);
+		var novaStock = {
+			empresa: obj.empresa,
+			simbolo: obj.simbolo,
+			quantidade: novaQuantidade,
+			pago: novoValorPago
+		};
 		
+		//Remove a stock se a quantidade for 0
+		if(novaStock.quantidade == 0) {
+			portfolio = portfolio.filter(function( obj ) {
+			    return obj.quantidade > 0;
+			});
+		} else {
+			portfolio.forEach(function(obj) {
+			    if (obj.simbolo === stock.simbolo) {
+			        obj.quantidade -= quantidade;
+			    }
+			});
+		}
+
+		//Atualiza o portfolio
+		usuario.setPortfolio(portfolio);
+
+		//Atualiza o capital disponível
+		var cDisponivel = usuario.getCapitalDisponivel();
+		var novoC = cDisponivel + (stock.valor * quantidade);
+		usuario.setCapitalDisponivel(novoC - 10);
+
+		//Atualiza o capital investido
+		usuario.setCapitalInvestido((parseFloat(stock.valor) * quantidade) - parseFloat(usuario.getCapitalInvestido()));
 	}
 
 	this.hasStock = function(ticker) {

@@ -235,4 +235,26 @@ function changeTabEffect(show) {
 
   return result? result[0] : null; // or undefined
 
-}
+  }
+
+  function renderTotalCapital() {
+    $('.cap-diff-amount').text('00.00');
+    var capInv = usuario.getCapitalInvestido();
+    var capInit = 10000;//usuario.getCapitalInicial();
+    var capDiffAmount = ((parseFloat(capInv) + parseFloat(usuario.getCapitalDisponivel())) - capInit);
+    var percentageV = getVariationPercentage(capInit, (parseFloat(capInv) + parseFloat(usuario.getCapitalDisponivel())));
+    var color = getPerColor(capDiffAmount.toString());
+    if(color == 'blue') {
+      $('.sinal').text('+');
+      $('.cap-diff-per').text(percentageV + '%');
+      animateNumbers(parseFloat(capDiffAmount).toFixed(2), $('.cap-diff-amount'));
+    } else {
+      $('.sinal').text('-');
+      $('.cap-diff-per').text(percentageV + '%');
+      var semSinal = capDiffAmount.toString().substring(1)
+      $('.cap-diff-amount').text(parseFloat(semSinal).toFixed(2))
+    }
+
+    $('.current-money').text('00.00')
+    animateNumbers(capInv, $('.current-money'));
+  }

@@ -25,23 +25,7 @@ myApp.onPageInit('index', function (page) {
   renderNDXChart(myChart, arrChart, '1D');
 
   //Calcula e exibe a variação total de capital
-  $('.cap-diff-amount').text('00.00')
-  var capInv = usuario.getCapitalInvestido();
-  var capInit = 10000;//usuario.getCapitalInicial();
-  var capDiffAmount = ((parseFloat(capInv) + parseFloat(usuario.getCapitalDisponivel())) - capInit);
-  var percentageV = getVariationPercentage(capInit, (parseFloat(capInv) + parseFloat(usuario.getCapitalDisponivel())));
-  var color = getPerColor(capDiffAmount.toString());
-  if(color == 'blue') {
-    $('.sinal').text('+');
-    $('.cap-diff-per').text(percentageV + '%');
-    animateNumbers(parseFloat(capDiffAmount).toFixed(2), $('.cap-diff-amount'));
-  } else {
-    $('.sinal').text('-');
-    $('.cap-diff-per').text(percentageV + '%');
-    var semSinal = capDiffAmount.toString().substring(1)
-    $('.cap-diff-amount').text(parseFloat(semSinal).toFixed(2))
-  }
-
+  renderTotalCapital();
 
   usuario.renderPortfolioAmount();
 
@@ -69,6 +53,8 @@ myApp.onPageInit('index', function (page) {
       $('#tabela-valores tbody').empty();
       usuario.renderPortfolioPrices();
     }
+
+    renderTotalCapital();
   })
 
   //Eventos de click na tabbar
@@ -128,9 +114,9 @@ myApp.onPageInit('index', function (page) {
       + '<div class="item-inner">'
       + '<div class="item-title-row">'
       + '<div class="item-title"><b><span class="transacao-ticker">'+transacoes[index]['ticker']+'</span>: <span class="transacao-ordem">'+transacoes[index]['tipoDeOrdem']+'</span></b></div>'
-      + '<div class="item-after">'+transacoes[index]['valor']+'</div>'
+      + '<div class="item-after">$'+transacoes[index]['valor']+'</div>'
       + '</div>'
-      + '<div class="item-subtitle">'+transacoes[index]['executada']+'</div>'
+      + '<div class="item-subtitle">'+transacoes[index]['dataTransacao']+'</div>'
       + '</div>'
       + '</div>'
       + '</li>';
@@ -208,6 +194,14 @@ myApp.onPageInit('a-mercado', function (page) {
             }
             usuario.buyStock(stock);
           }
+
+          if(tipoDeOrdem == 'sell') {
+            var stock = {
+              simbolo: ticker,
+              valor: valor
+            }
+            usuario.sellStock(stock, quantidade);
+          }
           
           myApp.alert('Sua ordem foi executada com sucesso!');
           mainView.router.loadPage('index.html');
@@ -233,7 +227,7 @@ myApp.onPageInit('ativo', function (page) {
 
   //Verifica se o mercado está aberto para liberar os botões de compra/venda
   if(!isMarketOpen()) {
-    $('.ordenar').addClass('button-disabled').attr('data-popup', '#');
+    //$('.ordenar').addClass('button-disabled').attr('data-popup', '#');
   }
 
   //Seta informações da ação
