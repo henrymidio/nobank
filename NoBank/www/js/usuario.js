@@ -243,29 +243,31 @@ function User() {
 			pago: novoValorPago
 		};
 		
+		portfolio.forEach(function(obj) {
+			    if (obj.simbolo === stock.simbolo) {
+			        obj.quantidade -= quantidade;
+			    }
+			});
+
 		//Remove a stock se a quantidade for 0
 		if(novaStock.quantidade == 0) {
 			portfolio = portfolio.filter(function( obj ) {
 			    return obj.quantidade > 0;
 			});
-		} else {
-			portfolio.forEach(function(obj) {
-			    if (obj.simbolo === stock.simbolo) {
-			        obj.quantidade -= quantidade;
-			    }
-			});
-		}
+		} 
 
 		//Atualiza o portfolio
 		usuario.setPortfolio(portfolio);
 
 		//Atualiza o capital disponível
 		var cDisponivel = usuario.getCapitalDisponivel();
-		var novoC = cDisponivel + (stock.valor * quantidade);
+		var novoC = +cDisponivel + (stock.valor * quantidade);
 		usuario.setCapitalDisponivel(novoC - 10);
+		console.log(cDisponivel)
+		console.log(novoC)
 
 		//Atualiza o capital investido
-		usuario.setCapitalInvestido((parseFloat(stock.valor) * quantidade) - parseFloat(usuario.getCapitalInvestido()));
+		usuario.setCapitalInvestido(parseFloat(usuario.getCapitalInvestido() - (parseFloat(stock.valor) * quantidade)));
 	}
 
 	this.hasStock = function(ticker) {
