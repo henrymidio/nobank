@@ -1,43 +1,5 @@
 function User() {
 
-	/*
-		Construtor
-	
-	var portfolio = [
-		{
-			'empresa': 'Starbucks',
-			'simbolo': 'SBUX',
-			'quantidade': 2,
-			'pago': 57.60
-		},
-		{
-			'empresa': 'Tesla',
-			'simbolo': 'TSLA',
-			'quantidade': 2,
-			'pago': 308.00
-		},
-		{
-			'empresa': 'Facebook',
-			'simbolo': 'FB',
-			'quantidade': 2,
-			'pago': 148.00
-		},
-		{
-			'empresa': 'Apple',
-			'simbolo': 'AAPL',
-			'quantidade': 2,
-			'pago': 142.50
-		},
-		{
-			'empresa': 'Alphabet Inc.',
-			'simbolo': 'GOOGL',
-			'quantidade': 2,
-			'pago': 930.98
-		}
-	]
-
-*/
-
 	this.getName = function() {
 		localStorage.getItem("name")
 	}
