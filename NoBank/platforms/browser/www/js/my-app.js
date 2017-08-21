@@ -171,6 +171,7 @@ myApp.onPageInit('index', function (page) {
 myApp.onPageInit('a-mercado', function (page) {
   $('#ordem-preco').attr("placeholder", localStorage.getItem('ativo-preco'));
   var tipoDeOrdem = localStorage.getItem("tipoDeOrdem");
+  var portfolio = usuario.getPortfolio();
 
   var ticker = localStorage.getItem("ticker");
   var empresa = localStorage.getItem("legal_name");
@@ -197,6 +198,13 @@ myApp.onPageInit('a-mercado', function (page) {
           }
 
           if(tipoDeOrdem == 'sell') {
+            //Primeiramente verifica se há ações suficientes para venda
+            var obj = getObjBySimbolo(portfolio, ticker);
+            if(obj.quantidade < quantidade) { 
+              alert('Número de ações insuficiente')
+              return false; 
+            }
+
             var stock = {
               simbolo: ticker,
               valor: valor
