@@ -164,6 +164,10 @@ td {
   font-weight: bold;
 }
 
+tr.stock-ticker {
+  font-size: 17px !important;
+}
+
 .stock-symbol {
   font-weight: bold;
 }
