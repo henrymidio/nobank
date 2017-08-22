@@ -29,6 +29,8 @@ myApp.onPageInit('index', function (page) {
 
   usuario.renderPortfolioAmount();
 
+  $('#menu-disponivel').text(usuario.getCapitalDisponivel());
+  
   //Evento de atualização
   $('#refresh').on('click', function(){
     arrChart = [];

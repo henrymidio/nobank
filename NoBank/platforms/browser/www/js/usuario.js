@@ -105,7 +105,7 @@ function User() {
         	  animateNumbers(capitalInvestido, $('.current-money'));
         	  localStorage.setItem("capitalInvestido", capitalInvestido);
 
-        	  $('#menu-disponivel').text(usuario.getCapitalDisponivel());
+        	  $('#menu-disponivel').html(usuario.getCapitalDisponivel());
 
         	  //Verificação da cor das variações
         	  variacao = variacao.toFixed(2);
