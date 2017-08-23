@@ -113,6 +113,8 @@ function User() {
 
         	  $('#tabela-montante tbody tr.'+simbolo+' .acao-var').html('$'+variacao).addClass("color-"+color);
         	  $('#tabela-montante tbody tr.'+simbolo+' .acao-preco').html(montante.toFixed(2)).addClass('stock-box-'+color);
+
+        	  renderTotalCapital()
         	   
         	})
 		}	
@@ -230,6 +232,20 @@ function User() {
 
 		//Atualiza o capital investido
 		usuario.setCapitalInvestido(parseFloat(usuario.getCapitalInvestido() - (parseFloat(stock.valor) * quantidade)));
+
+		//Adiciona transação ao histórico
+		var dataTransacao = formatDate(new Date());
+		var transacao = {
+			ticker: stock.simbolo,
+			tipoDeOrdem: "Venda a Mercado",
+			valor: stock.pago,
+			quantidade: stock.quantidade,
+			total: (stock.pago * stock.quantidade),
+			dataTransacao: dataTransacao
+		}
+		var historico = usuario.getHistorico();
+		historico.push(transacao);
+		usuario.setHistorico(historico);
 	}
 
 	this.hasStock = function(ticker) {

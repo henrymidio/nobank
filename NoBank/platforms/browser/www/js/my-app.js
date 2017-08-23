@@ -22,12 +22,14 @@ myApp.onPageInit('index', function (page) {
   //Renderiza o gráfico do índice Nasdaq
   var myChart;
   var arrChart = [];
+
   renderNDXChart(myChart, arrChart, '1D');
 
-  //Calcula e exibe a variação total de capital
-  renderTotalCapital();
-
+  //E seta a variação total de capital
   usuario.renderPortfolioAmount();
+
+  //Calcula e exibe a variação total de capital
+  //renderTotalCapital();
 
   $('#menu-disponivel').text(usuario.getCapitalDisponivel());
   
@@ -118,7 +120,10 @@ myApp.onPageInit('index', function (page) {
       + '<div class="item-title"><b><span class="transacao-ticker">'+transacoes[index]['ticker']+'</span>: <span class="transacao-ordem">'+transacoes[index]['tipoDeOrdem']+'</span></b></div>'
       + '<div class="item-after">$'+transacoes[index]['valor']+'</div>'
       + '</div>'
-      + '<div class="item-subtitle">'+transacoes[index]['dataTransacao']+'</div>'
+      + '<div class="item-title-row">'
+      + '<div class="item-title">'+transacoes[index]['dataTransacao']+'</div>'
+      + '<div class="item-after">'+transacoes[index]['quantidade']+' ações</div>'
+      + '</div>'
       + '</div>'
       + '</div>'
       + '</li>';
@@ -179,12 +184,12 @@ myApp.onPageInit('a-mercado', function (page) {
   var empresa = localStorage.getItem("legal_name");
   var valor = localStorage.getItem('ativo-preco');
 
-  $('.ordenar').on('click', function(){
+  $('.executar-ordem').on('click', function(){
     var quantidade = $('.ordem-quantidade').val();
     var total = (valor * quantidade) + 10;
     var capitalDisponivel = usuario.getCapitalDisponivel();
     
-      myApp.confirm('Tem certeza que deseja executar esta operação?', function () {
+      myApp.confirm('Tem certeza que deseja executar esta operação?', 'Nobank', function () {
           if(tipoDeOrdem == 'buy') {
             if(capitalDisponivel < total) {
               alert("Capital Insuficiente")
@@ -320,6 +325,7 @@ myApp.onPageInit('ativo', function (page) {
       localStorage.setItem('tipoDeOrdem', 'buy')
     }
   });
+
   /*
   $('.periodo').on('click', function(){
     $('.periodo').removeClass('periodo-selecionado');

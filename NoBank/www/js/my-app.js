@@ -22,12 +22,14 @@ myApp.onPageInit('index', function (page) {
   //Renderiza o gráfico do índice Nasdaq
   var myChart;
   var arrChart = [];
+
   renderNDXChart(myChart, arrChart, '1D');
 
-  //Calcula e exibe a variação total de capital
-  renderTotalCapital();
-
+  //E seta a variação total de capital
   usuario.renderPortfolioAmount();
+
+  //Calcula e exibe a variação total de capital
+  //renderTotalCapital();
 
   $('#menu-disponivel').text(usuario.getCapitalDisponivel());
   
