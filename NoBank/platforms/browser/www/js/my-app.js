@@ -177,6 +177,7 @@ myApp.onPageInit('index', function (page) {
 
 myApp.onPageInit('a-mercado', function (page) {
   $('#ordem-preco').attr("placeholder", localStorage.getItem('ativo-preco'));
+  
   var tipoDeOrdem = localStorage.getItem("tipoDeOrdem");
   var portfolio = usuario.getPortfolio();
 
@@ -214,7 +215,9 @@ myApp.onPageInit('a-mercado', function (page) {
 
             var stock = {
               simbolo: ticker,
-              valor: valor
+              empresa: empresa,
+              quantidade: quantidade,
+              pago: valor
             }
             usuario.sellStock(stock, quantidade);
           }
