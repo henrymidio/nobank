@@ -199,7 +199,7 @@ function User() {
 
 		var obj = getObjBySimbolo(portfolio, stock.simbolo);
 		var novaQuantidade = +obj.quantidade - +quantidade;
-		var novoValorPago  = +obj.pago - (stock.pago * stock.quantidade);
+		var novoValorPago  = +obj.pago - (stock.valor * stock.quantidade);
 		var novaStock = {
 			empresa: obj.empresa,
 			simbolo: obj.simbolo,
@@ -238,9 +238,9 @@ function User() {
 		var transacao = {
 			ticker: stock.simbolo,
 			tipoDeOrdem: "Venda a Mercado",
-			valor: stock.pago,
-			quantidade: stock.quantidade,
-			total: (stock.pago * stock.quantidade),
+			valor: stock.valor,
+			quantidade: novaStock.quantidade,
+			total: (stock.valor * stock.quantidade),
 			dataTransacao: dataTransacao
 		}
 		var historico = usuario.getHistorico();
