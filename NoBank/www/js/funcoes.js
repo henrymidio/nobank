@@ -144,6 +144,7 @@ function renderHeaderIndex() {
 }
 
 function renderNDXChart(myChart, arrChart, periodo) {
+  myApp.showIndicator();
   var limite = 27;
   var time_series = 'TIME_SERIES_INTRADAY';
   switch(periodo) {
@@ -164,6 +165,7 @@ function renderNDXChart(myChart, arrChart, periodo) {
           if(count > limite) {
             var lastUpdate = result["Meta Data"]["3. Last Refreshed"];
             myChart = renderChart(arrChart.reverse(), 'myChart', 'INDEXNASDAQ: NDX - ' + formatDate(new Date(lastUpdate.replace(/\s/, 'T'))) + ' GMT-4', '#009EC2');
+            myApp.hideIndicator();
             return false;
           }
       });
