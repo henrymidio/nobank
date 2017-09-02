@@ -22,7 +22,7 @@ myApp.onPageInit('index', function (page) {
   //Renderiza o gráfico do índice Nasdaq
   var myChart;
   var arrChart = [];
-
+  
   renderNDXChart(myChart, arrChart, '1D');
 
   //E seta a variação total de capital

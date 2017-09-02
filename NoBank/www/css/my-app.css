@@ -33,6 +33,14 @@ td {
   background-color: transparent !important;
 }
 
+.mini-logo {
+  height: 15px;
+  width: 15px;
+  margin-right: 5px; 
+  vertical-align: middle; 
+  margin-bottom: 0.23em;
+}
+
 .black-border:after {
   background-color: black !important;
 }
